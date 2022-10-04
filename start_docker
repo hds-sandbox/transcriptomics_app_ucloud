@@ -1,2 +1,2 @@
 docker build -t rstudio-4.2.0:ucloud .
-docker run --rm -it -p 8787:8787 --name rstudio-test rstudio-4.2.0:ucloud bash -c "start-rstudio"
+docker run --rm -it -p 8787:8787 --name rstudio-test rstudio-4.2.0:ucloud start_app -c "scrnaSEQ_visualizer" -f "./myfolder/"

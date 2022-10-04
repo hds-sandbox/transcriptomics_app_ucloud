@@ -3,11 +3,11 @@ FROM  dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
 
 USER 0
 
-LABEL software="RStudio" \
+LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>" \
     version="v2022.09" \
     license="MIT" \
-    description="Introduction to bulk RNAseq analysis"
+    description="Transcriptomics sandbox with modules and courses"
 
 
 RUN mkdir -p /usr/Intro_to_bulkRNAseq \
@@ -31,4 +31,11 @@ RUN Rscript /usr/Intro_to_bulkRNAseq/Scripts/packages.R
 
 WORKDIR /work
 
+# RUN pip install jupyter-lab
+RUN pip install cirrocumulus
+
 USER 11042
+
+## Set startup script in the PATH
+COPY --chown="${NB_USER}":"${NB_GID}" start_app /usr/bin/
+RUN chmod +x /usr/bin/start_app
