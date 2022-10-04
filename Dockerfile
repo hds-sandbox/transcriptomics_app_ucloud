@@ -10,6 +10,8 @@ LABEL software="Transcriptomics sandbox" \
     description="Transcriptomics sandbox with modules and courses"
 
 
+
+############# Intro to bulkRNAseq (KU Heads) - release 2022.09
 RUN mkdir -p /usr/Intro_to_bulkRNAseq \
     && mkdir /usr/Intro_to_bulkRNAseq/Scripts \
     && mkdir -p /usr/Intro_to_bulkRNAseq/Data
@@ -32,7 +34,20 @@ RUN Rscript /usr/Intro_to_bulkRNAseq/Scripts/packages.R
 WORKDIR /work
 
 # RUN pip install jupyter-lab
-RUN pip install cirrocumulus
+
+###### Cirrocumulus - Single Cell RNA seq data visualization
+RUN pip install --upgrade pip setuptools
+RUN pip install ez_setup
+COPY requirements.txt /usr/requirements.txt
+RUN pip install -r /usr/requirements.txt
+
+#RUN mamba env create -p "${CONDA_DIR}/envs/Cirrocumulus" python \
+# && mamba activate ${CONDA_DIR}/envs/Cirrocumulus \
+# && pip install cirrocumulus \
+# && mamba clean --all -f -y \
+# && mamba deactivate \
+# && fix-permissions "/home/${NB_USER}" \
+# && fix-permissions "${CONDA_DIR}"
 
 USER 11042
 
