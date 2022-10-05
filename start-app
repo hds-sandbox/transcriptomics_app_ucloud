@@ -80,7 +80,9 @@ then
     printf  "\n== Start Cirrocumulus ==  \n"
     printf  "=================== \n\n"
 
-    sudo cirro launch --port 8787 `ls -d ${CIRRO_FOLDER}/` 
+    sudo chmod -R u=rwx,g=rwx ${CIRRO_FOLDER}/
+    cd ${CIRRO_FOLDER}
+    cirro launch --host 0.0.0.0 --port 8787 `ls -d ./` 
 
 elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
 then
