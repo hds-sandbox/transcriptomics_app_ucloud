@@ -71,16 +71,16 @@ printf  "==================  \n\n"
 #    sudo /init
 
 # Start cirrocumulus    
-elif [ "${COURSE}" == "Cirrocumulus" ]
+if [ "${COURSE}" == "Cirrocumulus" ]
 then
-    echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
+    echo "-----> Chosen module: Cirrocumuls - Single cell data explorer"
+    echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
 
     printf  "\n===================  "
     printf  "\n== Start Cirrocumulus ==  \n"
     printf  "=================== \n\n"
 
-    mamba activate ${CONDA_DIR}/envs/Cirrocumulus
-    cirro launch --port 8787 `ls -d ${CIRRO_FOLDER}/` 
+    sudo cirro launch --port 8787 `ls -d ${CIRRO_FOLDER}/` 
 
 elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
 then

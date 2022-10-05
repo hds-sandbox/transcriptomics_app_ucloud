@@ -1,2 +1,2 @@
-asciitree
 cirrocumulus
+jupyterlab

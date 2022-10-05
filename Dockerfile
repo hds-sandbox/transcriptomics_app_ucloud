@@ -1,5 +1,5 @@
 # Rstudio test
-FROM  dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
+FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
 
 USER 0
 
@@ -33,24 +33,30 @@ RUN Rscript /usr/Intro_to_bulkRNAseq/Scripts/packages.R
 
 WORKDIR /work
 
-# RUN pip install jupyter-lab
+# UPDATE python and pip from source
+RUN apt-get update \
+ && apt-get install -y software-properties-common \
+ && add-apt-repository -y ppa:deadsnakes/ppa \
+ && apt-get update \
+ && apt-get install -y python3.10 \
+ && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 \
+ && apt-get install -y python3.10-distutils \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
+ && python3.10 /tmp/get-pip.py \
+ && rm /tmp/get-pip.py \
+ && rm /opt/venv/reticulate/bin/pip \
+ && ln -s /usr/local/bin/pip /opt/venv/reticulate/bin/pip \
+ && rm /opt/venv/reticulate/bin/virtualenv \
+ && ln -s /usr/local/bin/virtualenv /opt/venv/reticulate/bin/virtualenv
 
 ###### Cirrocumulus - Single Cell RNA seq data visualization
-RUN pip install --upgrade pip setuptools
-RUN pip install ez_setup
 COPY requirements.txt /usr/requirements.txt
 RUN pip install -r /usr/requirements.txt
 
-#RUN mamba env create -p "${CONDA_DIR}/envs/Cirrocumulus" python \
-# && mamba activate ${CONDA_DIR}/envs/Cirrocumulus \
-# && pip install cirrocumulus \
-# && mamba clean --all -f -y \
-# && mamba deactivate \
-# && fix-permissions "/home/${NB_USER}" \
-# && fix-permissions "${CONDA_DIR}"
+## Set startup script in the PATH
+COPY --chown="${NB_USER}":"${NB_GID}" start-app /usr/bin/
+RUN chmod +x /usr/bin/start-app
 
 USER 11042
-
-## Set startup script in the PATH
-COPY --chown="${NB_USER}":"${NB_GID}" start_app /usr/bin/
-RUN chmod +x /usr/bin/start_app
