@@ -53,13 +53,13 @@ printf  "==================  \n\n"
 #    bash -c "COURSE=${COURSE} jupyter lab --port=8787 --NotebookApp.token='' "
     
 # Intro to single cell RNAseq with Rstudio
-#elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
+#elif [ "${COURSE}" == "Intro_to_scRNAseq_R" ]
 #then
-#    echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
-#    if [ ! -d "Intro_to_bulkRNAseq" ];
+#    echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
+#    if [ ! -d "Intro_to_scRNAseq_R" ];
 #    then
 #        echo "-----> Linking fresh course material."
-#        ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
+#        ln -s /usr/Intro_to_scRNAseq_R /work/Intro_to_scRNAseq_R
 #    else
 #        echo "-----> Using your own course material."
 #    fi
