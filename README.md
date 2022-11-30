@@ -8,7 +8,7 @@ Items are periodically added to this app and can be chosen from the menu. Each i
 
 ### Courses
 
- The available courses are
+ The available courses are:
 
 | Course name      | Description |  Links    | Programming language |
 | :-----------: | ----------- | ----------- | ----------- |
@@ -16,11 +16,11 @@ Items are periodically added to this app and can be chosen from the menu. Each i
 
 ### Save your work
 
-Everything that is saved in the `work` folder will be saved in your personal folder after you finish your job in UCloud.
+Everything saved in the `work` folder will be saved in your personal folder after you finish your job in UCloud.
 
 ## Additional options
 
-Before submitting the app, you can choose a course and the amount of resources you need. Additionally, you can add folders so that they will be visible when using jupyterlab. Adding folders is useful if
+Before submitting the app, you can choose a course and the amount of resources you need. Additionally, you can add folders so that they will be visible when using the app. Adding folders is useful if:
 
 - you want to use a folder containing **your own data and code**, with which you want to perform analysis with the Transcriptomics tools of a course/module
 - you want to continue working on the material **from a  previous session** of the Transcriptomics Sandbox. In such a case, add the folder containing the material using the option `Add folder`. 

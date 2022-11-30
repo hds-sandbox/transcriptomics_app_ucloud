@@ -25,8 +25,34 @@ printf  "\n==================  "
 printf  "\n Selecting Module  \n"
 printf  "==================  \n\n"
 
+
+if [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
+then
+    echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
+    echo "Loading environment"
+
+    echo "Sys.setenv(RENV_PATHS_CACHE = '/opt/app_renv/cache')" > ~/.Rprofile
+    echo "renv::load(project = '/opt/app_renv')" >> ~/.Rprofile
+    # echo "renv::repair()" >> ~/.Rprofile
+
+    if [ ! -d "Intro_to_bulk" ];
+    then
+        echo "-----> Linking fresh course material."
+        ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
+    else
+        echo "-----> Using your own course material."
+    fi
+
+    printf  "\n===================  "
+    printf  "\n== Start RStudio ==  \n"
+    printf  "=================== \n\n"
+
+    sudo /init
+    
+fi
+
 # Intro to Single Cell RNAseq analysis with python
-#if [ "${COURSE}" == "Intro_to_NGS" ]
+#elif [ "${COURSE}" == "Intro_to_NGS" ]
 #then
 #    echo "-----> Chosen course: Introduction to NGS data"
 #    if [ ! -d "Intro_to_NGS" ];
@@ -71,34 +97,15 @@ printf  "==================  \n\n"
 #    sudo /init
 
 # Start cirrocumulus    
-if [ "${COURSE}" == "Cirrocumulus" ]
-then
-    echo "-----> Chosen module: Cirrocumuls - Single cell data explorer"
-    echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
+# elif [ "${COURSE}" == "Cirrocumulus" ]
+# then
+#     echo "-----> Chosen module: Cirrocumuls - Single cell data explorer"
+#     echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
 
-    printf  "\n===================  "
-    printf  "\n== Start Cirrocumulus ==  \n"
-    printf  "=================== \n\n"
+#     printf  "\n===================  "
+#     printf  "\n== Start Cirrocumulus ==  \n"
+#     printf  "=================== \n\n"
 
-    sudo chmod -R u=rwx,g=rwx ${CIRRO_FOLDER}/
-    cd ${CIRRO_FOLDER}
-    cirro launch --host 0.0.0.0 --port 8787 `ls -d ./` 
-
-elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
-then
-    echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
-    if [ ! -d "Intro_to_bulk" ];
-    then
-        echo "-----> Linking fresh course material."
-        ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
-    else
-        echo "-----> Using your own course material."
-    fi
-
-    printf  "\n===================  "
-    printf  "\n== Start RStudio ==  \n"
-    printf  "=================== \n\n"
-
-    sudo /init
-    
-fi
+#     sudo chmod -R u=rwx,g=rwx ${CIRRO_FOLDER}/
+#     cd ${CIRRO_FOLDER}
+#     cirro launch --host 0.0.0.0 --port 8787 `ls -d ./` 
