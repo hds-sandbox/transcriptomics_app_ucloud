@@ -3,3 +3,4 @@ envs_4.2
 start-rstudio
 packages.R
 .DS_Store
+start-docker.sh
