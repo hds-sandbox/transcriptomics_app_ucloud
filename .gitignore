@@ -1,5 +1,5 @@
-./archive-renv_download-11-29-2022.zip
-./envs_4.2
-start-rstudio.sh
+archive-renv_download-11-29-2022.zip
+envs_4.2
+start-rstudio
 packages.R
 .DS_Store
