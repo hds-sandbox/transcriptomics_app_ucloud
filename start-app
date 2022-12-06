@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CIRRO_FOLDER=/work
+CIRRO_FOLDER=/usr/Cirrocumulus/Data/pbmc3k
 
 ## Options for the Transcriptomics Sandbox app
 while getopts c:f: option

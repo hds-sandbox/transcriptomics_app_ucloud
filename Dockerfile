@@ -32,12 +32,16 @@ WORKDIR /tmp
 ## Intro to bulkRNAseq (KU Heads) - release 2022.09
 RUN mkdir -p /usr/Intro_to_bulkRNAseq \
  && mkdir /usr/Intro_to_bulkRNAseq/Scripts \
- && mkdir -p /usr/Intro_to_bulkRNAseq/Data \
+ && mkdir /usr/Intro_to_bulkRNAseq/Data \
  && mkdir -p /usr/Intro_to_bulkRNAseq/renv/cache \
  && chown -R ucloud:ucloud /usr/Intro_to_bulkRNAseq 
 
+## Cirrocumulus test data
+RUN mkdir -p /usr/Cirrocumulus/Data
+
 USER 11042
 
+COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
 COPY --chown=ucloud:ucloud ./install_renv.R /usr/Intro_to_bulkRNAseq/Scripts
 
 WORKDIR /usr/Intro_to_bulkRNAseq
