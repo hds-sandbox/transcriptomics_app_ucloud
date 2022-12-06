@@ -1,15 +1,40 @@
-setwd('/opt/app_renv')
-renv::init()
-Sys.setenv(RENV_PATHS_CACHE = '/opt/app_renv/cache')
+setwd('/usr/Intro_to_bulkRNAseq/renv')
 
+Sys.setenv(RENV_PATHS_CACHE = '/usr/Intro_to_bulkRNAseq/renv/cache')
+
+renv::init()
 
 print("Installing CRAN packages")
-renv::install(c("BiocManager", "tidyverse", "RColorBrewer", "pheatmap", "ggrepel", "cowplot", "Seurat", "patchwork", "sctransform"))
+
+renv::install(c("BiocManager", 
+                "tidyverse", 
+                "RColorBrewer", 
+                "pheatmap", 
+                "ggrepel", 
+                "cowplot", 
+                "Seurat", 
+                "patchwork", 
+                "sctransform"))
 
 print("Installing Bioconductor packages")
-renv::install(c("bioc::DESeq2", "bioc::GenomeInfoDb","bioc::clusterProfiler", "bioc::DOSE", "bioc::org.Hs.eg.db", "bioc::org.Mm.eg.db", "bioc::org.Dm.eg.db",
-               "bioc::pathview", "bioc::DEGreport", "bioc::tximport", "bioc::AnnotationHub", 
-               "bioc::ensembldb", "bioc::apeglm", "bioc::ggnewscale", "bioc::rhdf5", "bioc::slingshot", "bioc::gprofiler2"))
+
+renv::install(c("bioc::DESeq2", 
+                "bioc::GenomeInfoDb",
+                "bioc::clusterProfiler", 
+                "bioc::DOSE", 
+                "bioc::org.Hs.eg.db", 
+                "bioc::org.Mm.eg.db", 
+                "bioc::org.Dm.eg.db",
+                "bioc::pathview", 
+                "bioc::DEGreport", 
+                "bioc::tximport", 
+                "bioc::AnnotationHub", 
+                "bioc::ensembldb", 
+                "bioc::apeglm", 
+                "bioc::ggnewscale", 
+                "bioc::rhdf5", 
+                "bioc::slingshot", 
+                "bioc::gprofiler2"))
 
 print("Installing github packages")
 

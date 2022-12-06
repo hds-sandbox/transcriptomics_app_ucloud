@@ -1,29 +1,23 @@
 #!/bin/bash
 
-#Options for the transcriptomics app
-#
-#c = "choose a course or module" (Mandatory drop down menu)
-#    - Introduction to bulkRNAseq analysis (COURSE="Intro_to_bulkRNAseq")
-#    - Single Cell RNA Seq data visualizer (COURSE="Cirrocumulus")
-#
-#f = Folder containing Single Cell RNA Seq datasets to be visualized in Cirrocumulus (.h5ad, .h5Seurat, .loom,  .zarr, TileDB data files, STAR-fusion table .tsv,). (Mandatory browsing box to choose a folder, only for the Cirrocumulus app)
-#    - (CIRRO_FOLDER=$CHOSEN_FOLDER_IN_THE_MENU)
+CIRRO_FOLDER=/usr/Cirrocumulus/Data/pbmc3k
 
+## Options for the Transcriptomics Sandbox app
 while getopts c:f: option
 do
     case "${option}"
     in
         c) COURSE=${OPTARG};;
-        f) CIRRO_FOLDER=${OPTARG};; #only for cirrocumulus choice of module
+        f) CIRRO_FOLDER=${OPTARG};; # only for Cirrocumulus choice of module
         \?) ## Invalid option
             printf "Error: invalid option.\n\n"
             exit;;
     esac
 done
 
-printf  "\n==================  "
-printf  "\n Selecting Module  \n"
-printf  "==================  \n\n"
+printf  "\n======================  "
+printf  "\n== Selecting Module == \n"
+printf  "======================  \n\n"
 
 
 if [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
@@ -31,11 +25,10 @@ then
     echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
     echo "Loading environment"
 
-    echo "Sys.setenv(RENV_PATHS_CACHE = '/opt/app_renv/cache')" > ~/.Rprofile
-    echo "renv::load(project = '/opt/app_renv')" >> ~/.Rprofile
-    # echo "renv::repair()" >> ~/.Rprofile
+    echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/Intro_to_bulkRNAseq/renv/cache')" > ~/.Rprofile
+    echo "renv::load(project = '/usr/Intro_to_bulkRNAseq/renv')" >> ~/.Rprofile
 
-    if [ ! -d "Intro_to_bulk" ];
+    if [ ! -d "/work/Intro_to_bulkRNAseq" ];
     then
         echo "-----> Linking fresh course material."
         ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
@@ -48,6 +41,22 @@ then
     printf  "=================== \n\n"
 
     sudo /init
+
+elif [ "${COURSE}" == "Cirrocumulus" ]
+then
+    echo "-----> Chosen module: Cirrocumulus - Single cell data explorer"
+    echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
+
+    printf  "\n========================  "
+    printf  "\n== Start Cirrocumulus ==  \n"
+    printf  "======================== \n\n"
+
+    cd "${CIRRO_FOLDER}"
+
+    echo "source /opt/venv/cirrocumulus/bin/activate" >> "$HOME"/.bashrc
+    source /opt/venv/cirrocumulus/bin/activate
+    
+    cirro launch --host 0.0.0.0 --port 8787 ./*.h5ad
     
 fi
 
