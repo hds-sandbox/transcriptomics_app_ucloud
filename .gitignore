@@ -4,3 +4,7 @@ start-rstudio
 packages.R
 .DS_Store
 start-docker.sh
+<<<<<<< HEAD
+=======
+.gitignore
+>>>>>>> 8be7946a152b2be443c05adcc1de6be8ac6e2c85
