@@ -1,6 +1,6 @@
-setwd('/usr/Intro_to_bulkRNAseq/renv')
+setwd('/usr/RNAseq_in_Rstudio/renv')
 
-Sys.setenv(RENV_PATHS_CACHE = '/usr/Intro_to_bulkRNAseq/renv/cache')
+Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
 
 renv::init()
 

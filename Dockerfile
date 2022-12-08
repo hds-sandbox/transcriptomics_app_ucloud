@@ -29,11 +29,13 @@ RUN apt-get update \
 
 WORKDIR /tmp
 
+## Rstudio environment
+RUN mkdir -p /usr/RNAseq_in_Rstudio/renv/cache
+
 ## Intro to bulkRNAseq (KU Heads) - release 2022.09
 RUN mkdir -p /usr/Intro_to_bulkRNAseq \
  && mkdir /usr/Intro_to_bulkRNAseq/Scripts \
  && mkdir /usr/Intro_to_bulkRNAseq/Data \
- && mkdir -p /usr/Intro_to_bulkRNAseq/renv/cache \
  && chown -R ucloud:ucloud /usr/Intro_to_bulkRNAseq 
 
 ## Cirrocumulus test data

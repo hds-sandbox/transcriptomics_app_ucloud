@@ -20,21 +20,13 @@ printf  "\n== Selecting Module == \n"
 printf  "======================  \n\n"
 
 
-if [ "${COURSE}" == "Intro_to_bulkRNAseq" ]
+if [ "${COURSE}" == "RNAseq in Rstudio" ]
 then
-    echo "-----> Chosen course: Introduction to bulk RNAseq analysis"
+    echo "-----> Chosen module: RNAseq in Rstudio"
     echo "Loading environment"
 
-    echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/Intro_to_bulkRNAseq/renv/cache')" > ~/.Rprofile
-    echo "renv::load(project = '/usr/Intro_to_bulkRNAseq/renv')" >> ~/.Rprofile
-
-    if [ ! -d "/work/Intro_to_bulkRNAseq" ];
-    then
-        echo "-----> Linking fresh course material."
-        ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
-    else
-        echo "-----> Using your own course material."
-    fi
+    echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')" > ~/.Rprofile
+    echo "renv::load(project = '/usr/RNAseq_in_Rstudio/renv')" >> ~/.Rprofile
 
     printf  "\n===================  "
     printf  "\n== Start RStudio ==  \n"
