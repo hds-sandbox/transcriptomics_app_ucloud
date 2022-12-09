@@ -20,7 +20,7 @@ printf  "\n== Selecting Module == \n"
 printf  "======================  \n\n"
 
 
-if [ "${COURSE}" == "RNAseq in Rstudio" ]
+if [ "${COURSE}" == "RNAseq_in_Rstudio" ]
 then
     echo "-----> Chosen module: RNAseq in Rstudio"
     echo "Loading environment"
