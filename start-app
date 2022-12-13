@@ -25,9 +25,9 @@ then
     echo "-----> Chosen module: RNAseq in Rstudio"
     echo "Loading environment"
 
-    echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')" > ~/.Rprofile
-    echo "renv::load(project = '/usr/RNAseq_in_Rstudio/renv')" >> ~/.Rprofile
-
+    # echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')" > ~/.Rprofile
+    # echo "renv::load(project = '/usr/RNAseq_in_Rstudio/renv')" >> ~/.Rprofile
+    cat /usr/RNAseq_in_Rstudio/set_Rprofile > ~/.Rprofile
     printf  "\n===================  "
     printf  "\n== Start RStudio ==  \n"
     printf  "=================== \n\n"

@@ -32,6 +32,8 @@ WORKDIR /tmp
 ## Rstudio environment
 RUN mkdir -p /usr/RNAseq_in_Rstudio/renv/cache \
  && chown -R ucloud:ucloud /usr/RNAseq_in_Rstudio
+COPY --chown=ucloud:ucloud ./set_Rprofile /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./welcome_message.md /usr/RNAseq_in_Rstudio/
 
 ## Intro to bulkRNAseq (KU Heads) - release 2022.09
 RUN mkdir -p /usr/Intro_to_bulkRNAseq \

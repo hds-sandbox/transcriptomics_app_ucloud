@@ -1,21 +1,10 @@
-# Transcriptomics sandbox
+# Welcome to the RNAseq in Rstudio environment
 
-In this app you will find transcriptomics related courses you can learn from, and datasets and tools you can work with for your own research/learning purposes. The included materials and tools are organized by the **[Danish Health Data Science sandbox](https://hds-sandbox.github.io)**. 
+**Note:** In order to visualize this document better, please use "Visual" mode in the toolbar above.
 
-Items of this sandbox are currently based on [Rstudio server](https://www.rstudio.com/). Rstudio server is a web-based integrated development environment for R programming language, including Rmarkdowns, code, and data. Usually, each item includes a dedicated webpage with additional informations, guides, and material.
+In this Rstudio environment you will find transcriptomics related courses you can learn from, and datasets and tools you can work with for your own research/learning purposes. The included materials and tools are organized by the **[Danish Health Data Science sandbox](https://hds-sandbox.github.io)**. 
 
-## Available items
-
-Items are periodically added to this app and can be chosen from the menu. Each item can be a course, a setup to work with specific software, a research example, etc. In addition, items come with all necessary packages installed, eventual notebooks with computer code and explanations, and a dedicated webpage with additional material (notes, slides, recordings, ...).
-
-The available tools are:
-
-| Tool name | Description | Links | Programming language |
-| :-----------: | :-----------: | :-----------: | :-----------: |
-| **RNAseq in Rstudio**  | <div style="text-align: justify"> Rstudio session with common bulk and single cell RNAseq packages such as DESeq2, Seurat and clusterProfiler. </div> | [Webpage](https://posit.co/) | R, Rstudio |
-| **Cirrocumulus**  | <div style="text-align: justify"> Cirrocumulus is an interactive visualization tool for large-scale single-cell genomics data. </div> | [Webpage](https://cirrocumulus.readthedocs.io/en/latest/) | Python, JavaScript |
-
-### Packages installed in *RNAseq in Rstudio*
+## Packages installed in *RNAseq in Rstudio*
 Additional R packages have been installed in order to work with RNAseq data. Other packages and dependencies might be installed but are not shown here.
 
 | CRAN | Bioconductor | Remotes |
@@ -43,9 +32,9 @@ The available courses are:
 
 | Course title | Course code | Description | Links | Programming language |
 | :-----: | :-----: | :-----: | :-----: | :-----: |
-| **Introduction to bulk RNAseq analysis** | Intro_to_bulkRNAseq |<div style="text-align: justify"> A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow |
+| **Introduction to bulk RNAseq analysis** | Intro_to_bulkRNAseq | A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow |
 
-### Loading course materials
+## Loading course materials
 
 Materials for courses are available under `/usr/[course_code]`. In order to work with the course materials, please use a *soft link* to link it to the `/work` folder using the **terminal**. For example, in the Rstudio session, I would like to access the "Intro to bulk RNAseq" course material. Enter the following line in the **Terminal** tab of Rstudio:
 
@@ -55,7 +44,17 @@ ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
 
 ![](soft_link.png)
 
-### Save your work
+### Introduction to bulk RNASeq analysis
+
+This course is an introduction for how to approach bulk RNAseq data, starting from the sequencing reads. It will provide an overview of the fundamentals of RNAseq analysis, including read preprocessing, data normalization, data exploration with PCAs and heatmaps, performing differential expression analysis and annotation of the differentially expressed genes. In this course will also learn how to evaluate confounding and batch effects in the data. The course will further touch upon laboratory protocols, library preparation, and experimental design of RNA sequencing experiments, especially about how they influence downstream bioinformatic analysis.
+
+In order to load this course, run this line of code in the **Terminal** Tab:
+
+```{bash}
+ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
+```
+
+## Save your work
 
 Everything saved in the `/work` folder will be saved in your personal folder after you finish your job in UCloud. 
 
