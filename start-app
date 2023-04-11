@@ -24,7 +24,7 @@ if [ "${COURSE}" == "RNAseq_in_Rstudio" ]; then
     echo "Loading environment"
 
     # Load renv environment and display welcome message
-    cat /usr/RNAseq_in_Rstudio/set_Rprofile > ~/.Rprofile
+    cat /usr/RNAseq_in_Rstudio/set_Rprofile.R > ~/.Rprofile
 
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
@@ -64,7 +64,7 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
     fi
     
     echo "Loading environment"
-    cat /usr/RNAseq_in_Rstudio/set_Rprofile >~/.Rprofile
+    cat /usr/RNAseq_in_Rstudio/set_Rprofile.R >~/.Rprofile
     
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"

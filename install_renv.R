@@ -14,7 +14,8 @@ renv::install(c("BiocManager",
                 "cowplot", 
                 "Seurat", 
                 "patchwork", 
-                "sctransform"))
+                "sctransform",
+                "R.utils"))
 
 print("Installing Bioconductor packages")
 

@@ -17,4 +17,4 @@ rm /work/Intro_to_bulkRNAseq/archive.zip
 curl "https://zenodo.org/record/7802718/files/Data.zip?download=1" -o /work/Intro_to_bulkRNAseq/Data.zip
 unzip /work/Intro_to_bulkRNAseq/Data.zip -d /work/Intro_to_bulkRNAseq/
 rm /work/Intro_to_bulkRNAseq/Data.zip
-#rm -r /work/Intro_to_bulkRNAseq/__MACOSX
+rm -r /work/Intro_to_bulkRNAseq/__MACOSX
