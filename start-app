@@ -3,53 +3,75 @@
 CIRRO_FOLDER=/usr/Cirrocumulus/Data/pbmc3k
 
 ## Options for the Transcriptomics Sandbox app
-while getopts c:f: option
-do
-    case "${option}"
-    in
-        c) COURSE=${OPTARG};;
-        f) CIRRO_FOLDER=${OPTARG};; # only for Cirrocumulus choice of module
-        \?) ## Invalid option
-            printf "Error: invalid option.\n\n"
-            exit;;
+while getopts c:f: option; do
+    case "${option}" in
+    c) COURSE=${OPTARG} ;;
+    f) CIRRO_FOLDER=${OPTARG} ;; # only for Cirrocumulus choice of module
+    \?)                          ## Invalid option
+        printf "Error: invalid option.\n\n"
+        exit
+        ;;
     esac
 done
 
-printf  "\n======================  "
-printf  "\n== Selecting Module == \n"
-printf  "======================  \n\n"
+printf "\n======================  "
+printf "\n== Selecting Module == \n"
+printf "======================  \n\n"
 
-
-if [ "${COURSE}" == "RNAseq_in_Rstudio" ]
-then
+# RNAseq in Rstudio sandbox
+if [ "${COURSE}" == "RNAseq_in_Rstudio" ]; then
     echo "-----> Chosen module: RNAseq in Rstudio"
     echo "Loading environment"
 
-    # echo "Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')" > ~/.Rprofile
-    # echo "renv::load(project = '/usr/RNAseq_in_Rstudio/renv')" >> ~/.Rprofile
+    # Load renv environment and display welcome message
     cat /usr/RNAseq_in_Rstudio/set_Rprofile > ~/.Rprofile
-    printf  "\n===================  "
-    printf  "\n== Start RStudio ==  \n"
-    printf  "=================== \n\n"
+
+    printf "\n===================  "
+    printf "\n== Start RStudio ==  \n"
+    printf "=================== \n\n"
 
     sudo /init
 
-elif [ "${COURSE}" == "Cirrocumulus" ]
-then
+# Cirrocumulus scRNA visualizer
+elif [ "${COURSE}" == "Cirrocumulus" ]; then
     echo "-----> Chosen module: Cirrocumulus - Single cell data explorer"
     echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
 
-    printf  "\n========================  "
-    printf  "\n== Start Cirrocumulus ==  \n"
-    printf  "======================== \n\n"
+    printf "\n========================  "
+    printf "\n== Start Cirrocumulus ==  \n"
+    printf "======================== \n\n"
 
     cd "${CIRRO_FOLDER}"
 
-    echo "source /opt/venv/cirrocumulus/bin/activate" >> "$HOME"/.bashrc
+    echo "source /opt/venv/cirrocumulus/bin/activate" >>"$HOME"/.bashrc
     source /opt/venv/cirrocumulus/bin/activate
-    
+
     cirro launch --host 0.0.0.0 --port 8787 ./*.h5ad
+
+# Intro to bulk RNAseq with Rstudio
+elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
+    echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
+
+    if [ ! -d "Intro_to_bulkRNAseq" ]; then
+        echo "-----> Downloading fresh course material."
+        # download here materials from zenodo
+
+        bash /usr/RNAseq_in_Rstudio/download_bulkRNAseq.sh
+
+    else
+        echo "-----> Using your own course material."
+
+    fi
     
+    echo "Loading environment"
+    cat /usr/RNAseq_in_Rstudio/set_Rprofile >~/.Rprofile
+    
+    printf "\n===================  "
+    printf "\n== Start RStudio ==  \n"
+    printf "=================== \n\n"
+
+    sudo /init
+
 fi
 
 # Intro to Single Cell RNAseq analysis with python
@@ -64,49 +86,17 @@ fi
 #        echo "-----> Using your own course material."
 #    fi
 
-    ### install kernels - this goes into start-jupyter
+### install kernels - this goes into start-jupyter
 #    echo "-----> Installing course kernels on jupyterlab"
 #    "${CONDA_DIR}"/envs/NGS_aarhus_py/bin/python -m ipykernel install --user --name="NGS_python" --display-name "NGS (Python)" && \
 #    "${CONDA_DIR}"/envs/NGS_aarhus_r/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')"
 
-    ### modify kernel files with system variables
+### modify kernel files with system variables
 #    cp /usr/Intro_to_NGS/Environments/kernel_py_docker.json ~/.local/share/jupyter/kernels/ngs_python/kernel.json && \
 #    cp /usr/Intro_to_NGS/Environments/kernel_R_docker.json ~/.local/share/jupyter/kernels/ngs_r/kernel.json
 
 #    printf  "\n==================  "
 #    printf  "\n Start JupyterLab  \n"
 #    printf  "==================  \n\n"
-    #add course name as variable to be used
+#add course name as variable to be used
 #    bash -c "COURSE=${COURSE} jupyter lab --port=8787 --NotebookApp.token='' "
-    
-# Intro to single cell RNAseq with Rstudio
-#elif [ "${COURSE}" == "Intro_to_scRNAseq_R" ]
-#then
-#    echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
-#    if [ ! -d "Intro_to_scRNAseq_R" ];
-#    then
-#        echo "-----> Linking fresh course material."
-#        ln -s /usr/Intro_to_scRNAseq_R /work/Intro_to_scRNAseq_R
-#    else
-#        echo "-----> Using your own course material."
-#    fi
-
-#    printf  "\n===================  "
-#    printf  "\n== Start RStudio ==  \n"
-#    printf  "=================== \n\n"
-
-#    sudo /init
-
-# Start cirrocumulus    
-# elif [ "${COURSE}" == "Cirrocumulus" ]
-# then
-#     echo "-----> Chosen module: Cirrocumuls - Single cell data explorer"
-#     echo "-----> Cirrocumulus data folder ${CIRRO_FOLDER}"
-
-#     printf  "\n===================  "
-#     printf  "\n== Start Cirrocumulus ==  \n"
-#     printf  "=================== \n\n"
-
-#     sudo chmod -R u=rwx,g=rwx ${CIRRO_FOLDER}/
-#     cd ${CIRRO_FOLDER}
-#     cirro launch --host 0.0.0.0 --port 8787 `ls -d ./` 

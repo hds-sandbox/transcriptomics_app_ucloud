@@ -2,7 +2,7 @@ FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
 
 LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>" \
-    version="2022.09" \
+    version="2023.03" \
     license="MIT" \
     description="Transcriptomics sandbox with modules and courses"
 
@@ -32,14 +32,9 @@ WORKDIR /tmp
 ## Rstudio environment
 RUN mkdir -p /usr/RNAseq_in_Rstudio/renv/cache \
  && chown -R ucloud:ucloud /usr/RNAseq_in_Rstudio
-COPY --chown=ucloud:ucloud ./set_Rprofile /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./set_Rprofile.R /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./welcome_message.md /usr/RNAseq_in_Rstudio/
-
-## Intro to bulkRNAseq (KU Heads) - release 2022.09
-RUN mkdir -p /usr/Intro_to_bulkRNAseq \
- && mkdir /usr/Intro_to_bulkRNAseq/Scripts \
- && mkdir /usr/Intro_to_bulkRNAseq/Data \
- && chown -R ucloud:ucloud /usr/Intro_to_bulkRNAseq 
+COPY --chown=ucloud:ucloud ./download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
 
 ## Cirrocumulus test data
 RUN mkdir -p /usr/Cirrocumulus/Data
@@ -47,20 +42,12 @@ RUN mkdir -p /usr/Cirrocumulus/Data
 USER 11042
 
 COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
-COPY --chown=ucloud:ucloud ./install_renv.R /usr/Intro_to_bulkRNAseq/Scripts
+COPY --chown=ucloud:ucloud ./install_renv.R /usr/RNAseq_in_Rstudio/
 
-WORKDIR /usr/Intro_to_bulkRNAseq
+WORKDIR /usr/RNAseq_in_Rstudio/
 
-RUN git init \
- && git remote add origin https://github.com/hds-sandbox/bulk_RNAseq_course.git \
- && git config core.sparseCheckout true \
- && echo "Notebooks/" >> .git/info/sparse-checkout \
- && git pull --depth=1 origin spring_2022 \
- ## Data download
- && curl https://zenodo.org/record/7116371/files/Mov10_full_counts.txt?download=1 -o /usr/Intro_to_bulkRNAseq/Data/Mov10_full_counts.txt \
- && curl https://zenodo.org/record/7116371/files/Mov10_full_meta.txt?download=1 -o /usr/Intro_to_bulkRNAseq/Data/Mov10_full_meta.txt \
- ## Create renv and install packages
- && Rscript /usr/Intro_to_bulkRNAseq/Scripts/install_renv.R
+## Create renv and install packages
+RUN Rscript /usr/RNAseq_in_Rstudio/install_renv.R
 
 ## Install Cirrocumulus - Single Cell RNA seq data visualization
 COPY --chown=ucloud:ucloud requirements.txt /tmp/requirements.txt
