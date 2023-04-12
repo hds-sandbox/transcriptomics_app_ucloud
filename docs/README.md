@@ -16,6 +16,7 @@ The available tools are:
 | **Cirrocumulus**  | <div style="text-align: justify"> Cirrocumulus is an interactive visualization tool for large-scale single-cell genomics data. </div> | [Webpage](https://cirrocumulus.readthedocs.io/en/latest/) | Python, JavaScript |
 
 ### Packages installed in *RNAseq in Rstudio*
+
 Additional R packages have been installed in order to work with RNAseq data. Other packages and dependencies might be installed but are not shown here.
 
 | CRAN | Bioconductor | Remotes |
@@ -45,25 +46,11 @@ The available courses are:
 | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **Introduction to bulk RNAseq analysis** | Intro_to_bulkRNAseq |<div style="text-align: justify"> A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow |
 
-### Loading course materials
+**Note**: Course materials will automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq` in the submission page ([see below](#additional-options)).
 
-Materials for courses are available under `/usr/[course_code]`. In order to work with the course materials, please use a *soft link* to link it to the `/work` folder using the **terminal**. For example, in the Rstudio session, I would like to access the "Intro to bulk RNAseq" course material. Enter the following line in the **Terminal** tab of Rstudio:
+## Save your work
 
-```{bash}
-ln -s /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
-```
-
-![](soft_link.png)
-
-### Save your work
-
-Everything saved in the `/work` folder will be saved in your personal folder after you finish your job in UCloud. 
-
-**Note** Soft linked folders in `/work` will not be saved. If you want a copy of the materials, copy the material instead using the **Terminal** as before:
-
-```{bash}
-cp -r /usr/Intro_to_bulkRNAseq /work/Intro_to_bulkRNAseq
-```
+Everything saved in the `/work` folder will be saved in your user folder after you finish your job in UCloud. 
 
 ## Additional options
 
