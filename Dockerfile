@@ -32,9 +32,9 @@ WORKDIR /tmp
 ## Rstudio environment
 RUN mkdir -p /usr/RNAseq_in_Rstudio/renv/cache \
  && chown -R ucloud:ucloud /usr/RNAseq_in_Rstudio
-COPY --chown=ucloud:ucloud ./set_Rprofile.R /usr/RNAseq_in_Rstudio/
-COPY --chown=ucloud:ucloud ./welcome_message.md /usr/RNAseq_in_Rstudio/
-COPY --chown=ucloud:ucloud ./download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
 
 ## Cirrocumulus test data
 RUN mkdir -p /usr/Cirrocumulus/Data
@@ -42,7 +42,7 @@ RUN mkdir -p /usr/Cirrocumulus/Data
 USER 11042
 
 COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
-COPY --chown=ucloud:ucloud ./install_renv.R /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/install_renv.R /usr/RNAseq_in_Rstudio/
 
 WORKDIR /usr/RNAseq_in_Rstudio/
 
@@ -50,7 +50,7 @@ WORKDIR /usr/RNAseq_in_Rstudio/
 RUN Rscript /usr/RNAseq_in_Rstudio/install_renv.R
 
 ## Install Cirrocumulus - Single Cell RNA seq data visualization
-COPY --chown=ucloud:ucloud requirements.txt /tmp/requirements.txt
+COPY --chown=ucloud:ucloud ./scripts/requirements.txt /tmp/requirements.txt
 RUN virtualenv /opt/venv/cirrocumulus \
  && source /opt/venv/cirrocumulus/bin/activate \
  ## Update pip
@@ -61,7 +61,7 @@ RUN virtualenv /opt/venv/cirrocumulus \
  && rm /tmp/requirements.txt 
 
 ## Add entrypoint script
-COPY --chown=ucloud:ucloud start-app /usr/bin/start-app
+COPY --chown=ucloud:ucloud ./scripts/start-app /usr/bin/start-app
 RUN chmod +x /usr/bin/start-app
 
 WORKDIR /work
