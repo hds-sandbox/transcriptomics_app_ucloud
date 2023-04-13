@@ -5,3 +5,4 @@ packages.R
 .DS_Store
 start-docker.sh
 pbmc3k.zip
+Docker.log
