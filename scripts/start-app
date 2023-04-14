@@ -50,13 +50,37 @@ elif [ "${COURSE}" == "Cirrocumulus" ]; then
 
 # Intro to bulk RNAseq with Rstudio
 elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
-    echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
+    echo "-----> Chosen course: Introduction to bulk RNAseq analysis in R"
 
     if [ ! -d "Intro_to_bulkRNAseq" ]; then
         echo "-----> Downloading fresh course material."
         # download here materials from zenodo
 
         bash /usr/RNAseq_in_Rstudio/download_bulkRNAseq.sh
+
+    else
+        echo "-----> Using your own course material."
+
+    fi
+    
+    echo "Loading environment"
+    cat /usr/RNAseq_in_Rstudio/set_Rprofile.R >~/.Rprofile
+    
+    printf "\n===================  "
+    printf "\n== Start RStudio ==  \n"
+    printf "=================== \n\n"
+
+    sudo /init
+
+# Intro to scRNAseq with Rstudio
+elif [ "${COURSE}" == "Intro_to_scRNAseq_R" ]; then
+    echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
+
+    if [ ! -d "Intro_to_scRNAseq_R" ]; then
+        echo "-----> Downloading fresh course material."
+        # download here materials from zenodo
+
+        bash /usr/RNAseq_in_Rstudio/download_scRNAseq.sh
 
     else
         echo "-----> Using your own course material."

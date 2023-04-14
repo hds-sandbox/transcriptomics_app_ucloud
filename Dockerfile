@@ -35,6 +35,7 @@ RUN mkdir -p /usr/RNAseq_in_Rstudio/renv/cache \
 COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /usr/RNAseq_in_Rstudio/
 
 ## Cirrocumulus test data
 RUN mkdir -p /usr/Cirrocumulus/Data
