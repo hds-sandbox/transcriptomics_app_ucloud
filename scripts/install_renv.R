@@ -7,6 +7,7 @@ renv::init()
 print("Installing CRAN packages")
 
 renv::install(c("BiocManager", 
+                "markdown",
                 "tidyverse", 
                 "RColorBrewer", 
                 "pheatmap", 
@@ -15,7 +16,8 @@ renv::install(c("BiocManager",
                 "Seurat", 
                 "patchwork", 
                 "sctransform",
-                "R.utils"))
+                "R.utils",
+                "ggbeeswarm"))
 
 print("Installing Bioconductor packages")
 
@@ -44,6 +46,7 @@ renv::install("satijalab/seurat-wrappers")
 renv::install("satijalab/seurat-data")
 renv::install("stephenturner/annotables")
 renv::install("mojaveazure/seurat-disk")
+renv::install("theislab/kBET")
 
 # setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
 renv::install("Signac")

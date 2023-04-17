@@ -2,7 +2,7 @@
 
 In this app you will find transcriptomics related courses you can learn from, and datasets and tools you can work with for your own research/learning purposes. The included materials and tools are organized by the **[Danish Health Data Science sandbox](https://hds-sandbox.github.io)**. 
 
-Items of this sandbox are currently based on [Rstudio server](https://www.rstudio.com/). Rstudio server is a web-based integrated development environment for R programming language, including Rmarkdowns, code, and data. Usually, each item includes a dedicated webpage with additional informations, guides, and material.
+Most items of this sandbox are currently based on [Rstudio server](https://www.rstudio.com/). Rstudio server is a web-based integrated development environment for R programming language, including Rmarkdowns, code, and data. Usually, each item includes a dedicated webpage with additional informations, guides, and material.
 
 ## Available items
 
@@ -45,8 +45,9 @@ The available courses are:
 | Course title | Course code | Description | Links | Programming language |
 | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **Introduction to bulk RNAseq analysis** | Intro_to_bulkRNAseq |<div style="text-align: justify"> A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow |
+| **Introduction to single cell RNAseq analysis** | Intro_to_RNAseq_R |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, Rstudio |
 
-**Note**: Course materials will automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq` in the submission page ([see below](#additional-options)).
+**Note**: Course materials will automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq` or `Intro_to_scRNAseq_R`, respectively, in the submission page ([see below](#additional-options)).
 
 ## Save your work
 
