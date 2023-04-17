@@ -45,7 +45,7 @@ The available courses are:
 | Course title | Course code | Description | Links | Programming language |
 | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **Introduction to bulk RNAseq analysis** | Intro_to_bulkRNAseq |<div style="text-align: justify"> A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow |
-| **Introduction to single cell RNAseq analysis** | Intro_to_RNAseq_R |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, Rstudio |
+| **Introduction to single cell RNAseq analysis** | Intro_to_scRNAseq_R |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/scRNAseq_course/) | R, Rstudio |
 
 **Note**: Course materials will automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq` or `Intro_to_scRNAseq_R`, respectively, in the submission page ([see below](#additional-options)).
 

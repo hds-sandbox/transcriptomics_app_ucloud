@@ -18,6 +18,7 @@ Where `{OPTION}` is either:
 *   "RNAseq_in_Rstudio": This will start a Rstudio browser version with many RNAseq related packages
 *   "Cirrocumulus": This will start a Cirrocumulus session
 *   "Intro_bulk_RNAseq": This will start a Rstudio browser session with the materials to run the ["Introduction to bulk RNAseq"](https://hds-sandbox.github.io/bulk_RNAseq_course/) workshop.
+*   "Intro_scRNAseq_R": This will start a Rstudio browser session with the materials to run the ["Introduction to single cell RNAseq"](https://hds-sandbox.github.io/scRNAseq_course/) workshop.
 
 You can find the interactive session at `localhost:8787`.
 
