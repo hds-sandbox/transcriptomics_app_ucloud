@@ -1,2 +1,3 @@
 cirrocumulus
 jupyterlab
+scrublet

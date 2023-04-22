@@ -36,6 +36,7 @@ COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /usr/RNAseq_in_Rstudio/
+COPY --chown=ucloud:ucloud ./scripts/install_renv.R /usr/RNAseq_in_Rstudio/
 
 ## Cirrocumulus test data
 RUN mkdir -p /usr/Cirrocumulus/Data
@@ -43,11 +44,9 @@ RUN mkdir -p /usr/Cirrocumulus/Data
 USER 11042
 
 COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
-COPY --chown=ucloud:ucloud ./scripts/install_renv.R /usr/RNAseq_in_Rstudio/
-
-WORKDIR /usr/RNAseq_in_Rstudio/
 
 ## Create renv and install packages
+WORKDIR /usr/RNAseq_in_Rstudio/
 RUN Rscript /usr/RNAseq_in_Rstudio/install_renv.R
 
 ## Install Cirrocumulus - Single Cell RNA seq data visualization
