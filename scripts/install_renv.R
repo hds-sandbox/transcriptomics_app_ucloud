@@ -42,11 +42,7 @@ renv::install(c("bioc::DESeq2",
 print("Installing github packages")
 
 renv::update("Matrix")
-renv::install("satijalab/seurat-wrappers")
-renv::install("satijalab/seurat-data")
-renv::install("stephenturner/annotables")
-renv::install("mojaveazure/seurat-disk")
-renv::install("theislab/kBET")
+renv::install(c("satijalab/seurat-wrappers","satijalab/seurat-data","stephenturner/annotables","mojaveazure/seurat-disk","theislab/kBET"))
 
 # setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
 renv::install("Signac")
