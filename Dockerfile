@@ -15,7 +15,7 @@ RUN apt-get update \
  && apt-get update \
  && apt-get install --no-install-recommends -y python3.10 \
  && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 \
- && apt-get install --no-install-recommends -y python3.10-distutils \
+ && apt-get install --no-install-recommends -y python3.10-distutils libpython3.10-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
@@ -48,6 +48,8 @@ COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
 ## Create renv and install packages
 WORKDIR /usr/RNAseq_in_Rstudio/
 RUN Rscript /usr/RNAseq_in_Rstudio/install_renv.R
+
+WORKDIR /tmp
 
 ## Install Cirrocumulus - Single Cell RNA seq data visualization
 COPY --chown=ucloud:ucloud ./scripts/requirements.txt /tmp/requirements.txt
