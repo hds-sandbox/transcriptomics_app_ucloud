@@ -25,6 +25,8 @@ if [ "${COURSE}" == "RNAseq_in_Rstudio" ]; then
 
     # Load renv environment and display welcome message
     cat /usr/RNAseq_in_Rstudio/set_Rprofile.R > ~/.Rprofile
+    echo "source /opt/venv/cirrocumulus/bin/activate" >>"$HOME"/.bashrc
+    source /opt/venv/cirrocumulus/bin/activate
 
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
@@ -81,8 +83,6 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
         # download here materials from zenodo
 
         bash /usr/RNAseq_in_Rstudio/download_scRNAseq.sh
-        echo "source /opt/venv/cirrocumulus/bin/activate" >>"$HOME"/.bashrc
-        source /opt/venv/cirrocumulus/bin/activate
 
     else
         echo "-----> Using your own course material."
@@ -91,6 +91,8 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
     
     echo "Loading environment"
     cat /usr/RNAseq_in_Rstudio/set_Rprofile.R >~/.Rprofile
+    echo "source /opt/venv/cirrocumulus/bin/activate" >>"$HOME"/.bashrc
+    source /opt/venv/cirrocumulus/bin/activate
     
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
