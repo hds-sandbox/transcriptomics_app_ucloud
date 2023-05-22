@@ -6,7 +6,7 @@ mkdir /work/Intro_to_bulkRNAseq/Results
 mkdir /work/Intro_to_bulkRNAseq/Notebooks
 
 # Download notebooks from zenodo
-curl "https://zenodo.org/record/7828853/files/hds-sandbox/bulk_RNAseq_course-v3.0.zip?download=1" -o /work/Intro_to_bulkRNAseq/archive.zip
+curl "https://zenodo.org/record/7956067/files/hds-sandbox/bulk_RNAseq_course-v3.0.1.zip?download=1" -o /work/Intro_to_bulkRNAseq/archive.zip
 unzip /work/Intro_to_bulkRNAseq/archive.zip -d /work/Intro_to_bulkRNAseq/
 mv "/work/Intro_to_bulkRNAseq/hds-sandbox"*"/Notebooks/"* "/work/Intro_to_bulkRNAseq/Notebooks"
 rm -r "/work/Intro_to_bulkRNAseq/hds-sandbox"*
