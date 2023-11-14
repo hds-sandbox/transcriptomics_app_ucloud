@@ -1,0 +1,32 @@
+# Use your own base image
+FROM transcriptomics_app:v2023.11
+
+USER 0
+
+# Install Miniconda and Mamba
+RUN apt-get update && \
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
+    bash miniconda.sh -b -p /opt/conda && \
+    rm miniconda.sh && \
+    /opt/conda/bin/conda install -y -n base -c conda-forge mamba 
+
+# Set environment variables for Conda
+ENV PATH /opt/conda/bin:$PATH
+
+# Create a working directory
+WORKDIR /tmp
+
+# Copy the environment YAML file to the working directory
+COPY scripts/baged-bulk.yml /tmp
+
+# Create a Conda environment from the YAML file
+RUN mamba env create --prefix /opt/venv/RNAseq_CLI -f baged-bulk.yml \
+    && rm baged-bulk.yml \
+    && mamba clean --all -f -y
+
+USER 11042
+
+WORKDIR /work
+
+COPY --chown=ucloud:ucloud ./scripts/start-app_2 /usr/bin/start-app
+RUN chmod +x /usr/bin/start-app

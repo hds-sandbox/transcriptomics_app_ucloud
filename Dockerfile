@@ -2,7 +2,7 @@ FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
 
 LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>" \
-    version="2023.03" \
+    version="2023.11" \
     license="MIT" \
     description="Transcriptomics sandbox with modules and courses"
 
@@ -27,6 +27,9 @@ RUN apt-get update \
  && ln -s /usr/local/bin/virtualenv /opt/venv/reticulate/bin/virtualenv \
  && chown -R ucloud:ucloud /opt/venv/
 
+RUN pip install wget \ 
+ && pip install git+https://github.com/joseale2310/zenodo_get@patch-1
+
 WORKDIR /tmp
 
 ## Rstudio environment
@@ -36,16 +39,39 @@ COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /usr/RNAseq_in_Rstudio/
 COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /usr/RNAseq_in_Rstudio/
-COPY --chown=ucloud:ucloud ./scripts/install_renv.R /usr/RNAseq_in_Rstudio/
 
 ## Cirrocumulus test data
 RUN mkdir -p /usr/Cirrocumulus/Data
+
+# Install Miniconda and Mamba
+RUN apt-get update && \
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
+    bash miniconda.sh -b -p /opt/conda && \
+    rm miniconda.sh && \
+    /opt/conda/bin/conda install -y -n base -c conda-forge mamba 
+
+# Set environment variables for Conda
+ENV PATH /opt/conda/bin:$PATH
+
+# Create a working directory
+WORKDIR /tmp
+
+# Copy the environment YAML file to the working directory
+COPY scripts/baged-bulk.yml /tmp
+
+# Create a Conda environment from the YAML file
+RUN mamba env create --prefix /opt/venv/RNAseq_CLI -f baged-bulk.yml \
+    && rm baged-bulk.yml \
+    && mamba clean --all -f -y
+
+
 
 USER 11042
 
 COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
 
 ## Create renv and install packages
+COPY --chown=ucloud:ucloud ./scripts/install_renv.R /usr/RNAseq_in_Rstudio/
 WORKDIR /usr/RNAseq_in_Rstudio/
 RUN Rscript /usr/RNAseq_in_Rstudio/install_renv.R
 

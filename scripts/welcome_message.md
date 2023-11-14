@@ -1,6 +1,6 @@
 # Welcome to the RNAseq in Rstudio environment
 
-In this Rstudio environment you will find transcriptomics related courses you can learn from, and use datasets and tools for your own research/learning purposes. The included materials and tools are organized by the **[Danish Health Data Science sandbox](https://hds-sandbox.github.io)**. 
+In this Rstudio environment you will find transcriptomics related courses you can learn from, and use datasets and tools for your own research/learning purposes. The included materials and tools are organized by the **[Danish Health Data Science sandbox](https://hds-sandbox.github.io)**.
 
 Find more instructions on how to use this app in the [UCloud documentation](https://docs.cloud.sdu.dk/Apps/transcriptomics.html)
 

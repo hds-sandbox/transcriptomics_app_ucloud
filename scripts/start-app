@@ -100,6 +100,20 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
 
     sudo /init
 
+elif [ "${COURSE}" == "RNAseq_CLI" ]; then
+    echo "-----> Chosen environment: RNAseq CLI"
+
+    printf "\n========================  "
+    printf "\n== Start RNAseq CLI ==  \n"
+    printf "======================== \n\n"
+
+    conda init
+    echo "conda activate /opt/venv/RNAseq_CLI/" >>"$HOME"/.bashrc
+    source "$HOME"/.bashrc
+    #eval "$(conda shell.bash hook)"
+
+    SHELL=/bin/bash /opt/venv/RNAseq_CLI/bin/jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
+ 
 fi
 
 # Intro to Single Cell RNAseq analysis with python
@@ -127,4 +141,4 @@ fi
 #    printf  "\n Start JupyterLab  \n"
 #    printf  "==================  \n\n"
 #add course name as variable to be used
-#    bash -c "COURSE=${COURSE} jupyter lab --port=8787 --NotebookApp.token='' "
+#    jupyter lab --port=8787 --NotebookApp.token='' "

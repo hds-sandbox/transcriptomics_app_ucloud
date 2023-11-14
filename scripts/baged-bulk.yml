@@ -1,0 +1,27 @@
+channels:
+    - conda-forge
+    - bioconda
+dependencies:
+    - jupyterlab
+    - snakemake
+    - fastqc
+    - multiqc
+    - sortmerna
+    - fastp
+    - trimmomatic
+    - star
+    - hisat2
+    - kallisto
+    - bowtie2
+    - salmon
+    - subread
+    - rsem
+    - samtools
+    - sambamba
+    - bedtools
+    - stringtie
+    - interproscan
+    - eggnog-mapper
+    - qualimap
+    - rseqc
+    - gatk4

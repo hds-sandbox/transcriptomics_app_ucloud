@@ -6,7 +6,7 @@ renv::init()
 
 print("Installing CRAN packages")
 
-renv::install(c("BiocManager", 
+renv::install(c("bioc::Biobase", "BiocManager", 
                 "markdown",
                 "tidyverse", 
                 "RColorBrewer", 
@@ -17,7 +17,15 @@ renv::install(c("BiocManager",
                 "patchwork", 
                 "sctransform",
                 "R.utils",
-                "ggbeeswarm"))
+                "ggbeeswarm",
+                "factoextra",
+                "FactoMineR",
+                "NMF",
+                "hexbin",
+                "statmod",
+                "GOplot",
+                "ggpubr",
+                "ggsci"))
 
 print("Installing Bioconductor packages")
 
@@ -38,7 +46,9 @@ renv::install(c("bioc::DESeq2",
                 "bioc::rhdf5", 
                 "bioc::slingshot", 
                 "bioc::gprofiler2",
-                "bioc::multtest"))
+                "bioc::multtest",
+                "bioc::vsn",
+                "bioc::airway"))
 
 print("Installing github packages")
 
@@ -47,5 +57,8 @@ renv::install(c("satijalab/seurat-wrappers","satijalab/seurat-data","stephenturn
 
 # setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
 renv::install(c("Signac","metap"))
+
+
+
 
 renv::snapshot()
