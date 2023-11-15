@@ -1,4 +1,4 @@
-FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.0
+FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.3.2
 
 LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>" \
@@ -63,8 +63,6 @@ COPY scripts/baged-bulk.yml /tmp
 RUN mamba env create --prefix /opt/venv/RNAseq_CLI -f baged-bulk.yml \
     && rm baged-bulk.yml \
     && mamba clean --all -f -y
-
-
 
 USER 11042
 
