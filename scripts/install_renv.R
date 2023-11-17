@@ -4,32 +4,36 @@ Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
 
 renv::init()
 
+options(renv.config.dependencies.limit = Inf)
+
 print("Installing CRAN packages")
 
-renv::install(c("bioc::Biobase", "BiocManager", 
-                "markdown",
-                "tidyverse", 
-                "RColorBrewer", 
-                "pheatmap", 
-                "ggrepel", 
-                "cowplot", 
-                "Seurat", 
-                "patchwork", 
-                "sctransform",
-                "R.utils",
-                "ggbeeswarm",
-                "factoextra",
-                "FactoMineR",
-                "NMF",
-                "hexbin",
-                "statmod",
-                "GOplot",
-                "ggpubr",
-                "ggsci"))
+renv::install("BiocManager")
+renv::install("bioc::Biobase")
+renv::install("markdown")
+renv::install("tidyverse")
+renv::install("RColorBrewer")
+renv::install("pheatmap")
+renv::install("ggrepel")
+renv::install("cowplot")
+renv::install("Seurat")
+renv::install("patchwork")
+renv::install("sctransform")
+renv::install("R.utils")
+renv::install("ggbeeswarm")
+renv::install("factoextra")
+renv::install("FactoMineR")
+renv::install("NMF")
+renv::install("hexbin")
+renv::install("statmod")
+renv::install("GOplot")
+renv::install("ggpubr")
+renv::install("ggsci")
 
 print("Installing Bioconductor packages")
 
-renv::install(c("bioc::DESeq2", 
+renv::install(c("bioc::Biobase",
+                "bioc::DESeq2", 
                 "bioc::GenomeInfoDb",
                 "bioc::clusterProfiler", 
                 "bioc::DOSE", 
@@ -57,8 +61,5 @@ renv::install(c("satijalab/seurat-wrappers","satijalab/seurat-data","stephenturn
 
 # setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
 renv::install(c("Signac","metap"))
-
-
-
 
 renv::snapshot()

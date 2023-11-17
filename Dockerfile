@@ -1,4 +1,4 @@
-FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.3.2
+FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.2.3
 
 LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>" \
@@ -14,6 +14,8 @@ RUN apt-get update \
  && add-apt-repository -y ppa:deadsnakes/ppa \
  && apt-get update \
  && apt-get install --no-install-recommends -y python3.10 \
+ #&& apt-get install --no-install-recommends -y libhdf5-dev \
+ #&& apt-get install --no-install-recommends -y libfftw3-3 \
  && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 \
  && apt-get install --no-install-recommends -y python3.10-distutils libpython3.10-dev \
  && apt-get clean \
@@ -21,10 +23,11 @@ RUN apt-get update \
  && curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
  && python3.10 /tmp/get-pip.py \
  && rm /tmp/get-pip.py \
- && rm /opt/venv/reticulate/bin/pip \
- && ln -s /usr/local/bin/pip /opt/venv/reticulate/bin/pip \
- && rm /opt/venv/reticulate/bin/virtualenv \
- && ln -s /usr/local/bin/virtualenv /opt/venv/reticulate/bin/virtualenv \
+ #&& rm /opt/venv/reticulate/bin/pip \
+ #&& ln -s /usr/local/bin/pip /opt/venv/reticulate/bin/pip \
+ #&& rm /opt/venv/reticulate/bin/virtualenv \
+ #&& ln -s /usr/local/bin/virtualenv /opt/venv/reticulate/bin/virtualenv \
+ && mkdir -p /opt/venv \
  && chown -R ucloud:ucloud /opt/venv/
 
 RUN pip install wget \ 
@@ -77,6 +80,10 @@ WORKDIR /tmp
 
 ## Install Cirrocumulus - Single Cell RNA seq data visualization
 COPY --chown=ucloud:ucloud ./scripts/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir virtualenv 
+
+ENV PATH /home/ucloud/.local/bin:$PATH
+
 RUN virtualenv /opt/venv/cirrocumulus \
  && source /opt/venv/cirrocumulus/bin/activate \
  ## Update pip
