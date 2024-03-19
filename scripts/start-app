@@ -26,8 +26,8 @@ if [ "${COURSE}" == "RNAseq_in_Rstudio" ]; then
     # Load renv environment and display welcome message
     cat /tmp/set_Rprofile.R > ~/.Rprofile
 
-    eval "$(/opt/bin/micromamba shell hook -s bash)" 
-    micromamba activate RNAseq_env 
+    #eval "$(/opt/bin/micromamba shell hook -s bash)" 
+    #micromamba activate RNAseq_env 
 
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
@@ -46,6 +46,8 @@ elif [ "${COURSE}" == "Cirrocumulus" ]; then
 
     cd "${CIRRO_FOLDER}"
 
+    eval "$(/opt/bin/micromamba shell hook -s bash)" 
+    micromamba activate RNAseq_env
     cirro launch --host 0.0.0.0 --port 8787 ./*.h5ad
 
 # Intro to bulk RNAseq with Rstudio
@@ -53,6 +55,9 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
     echo "-----> Chosen course: Introduction to bulk RNAseq analysis in R"
 
     if [ ! -d "Intro_to_bulkRNAseq" ]; then
+        eval "$(/opt/bin/micromamba shell hook -s bash)" 
+        micromamba activate RNAseq_env 
+
         echo "-----> Downloading fresh course material."
         # download here materials from zenodo
         bash /tmp/download_bulkRNAseq.sh
@@ -76,6 +81,8 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
     echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
 
     if [ ! -d "Intro_scRNAseq_R" ]; then
+        eval "$(/opt/bin/micromamba shell hook -s bash)" 
+        micromamba activate RNAseq_env 
         echo "-----> Downloading fresh course material."
         # download here materials from zenodo
         bash /tmp/download_scRNAseq.sh
@@ -125,4 +132,13 @@ elif [ "${COURSE}" == "Advanced_SingleCell" ]; then
     /opt/micromamba/envs/RNAseq_env/bin/R -e "IRkernel::installspec(user=TRUE, name = 'r_scrna', displayname = 'R Adv Single Cell')"
     SHELL=/bin/bash jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
  
+fi
+
+
+#Data converter
+elif [ "${COURSE}" == "DataConversion" ]; then
+    echo "-----> Chosen tool: data conversion"
+    eval "$(/opt/bin/micromamba shell hook -s bash)" 
+    micromamba activate RNAseq_env 
+
 fi

@@ -1,78 +1,67 @@
-remotes::install_github("satijalab/sctransform",
-    ref="develop", upgrade="always",
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+library(httr, lib.loc="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
 
-remotes::install_github("jhrcook/ggasym", 
-     upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+# Your personal access token
+if(token != "None"){
+    print("##########")
+    print("Your GITHUB token is")
+    print(token)
 
-remotes::install_github("YuLab-SMU/ggtree", 
-     upgrade="always", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+    # Create a config with your token
+    print("Your GITHUB token configuration is")
+    response <- GET("https://api.github.com/rate_limit",
+                add_headers(Authorization = paste("token", token, sep = " ")))
 
-install.packages('GOplot', 
-    repos='http://cran.us.r-project.org', 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/" )
+    # Extract the rate limit data
+    rate_limit_data <- content(response)
 
-install.packages('BiocManager', 
-    repos='http://cran.us.r-project.org', 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/" )
+    # Print the rate limit data
+    print(rate_limit_data)
+    print("###################")
+    }
 
-BiocManager::install(update=FALSE, 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
-
-BiocManager::install(c("clusterExperiment",
-"Biobase",
-"DESeq2", 
-"GenomeInfoDb",
-"clusterProfiler", 
-"DOSE", 
-"org.Hs.eg.db", 
-"org.Mm.eg.db", 
-"org.Dm.eg.db",
-"pathview", 
-"DEGreport", 
-"tximport", 
-"AnnotationHub", 
-"ensembldb", 
-"apeglm", 
-"ggnewscale", 
-"rhdf5", 
-"slingshot", 
-"gprofiler2",
-"multtest",
-"vsn",
-"airway"), 
-update=FALSE, 
-lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
-
-remotes::install_github(c("satijalab/seurat-wrappers",
-                         "satijalab/seurat-data",
-                          "stephenturner/annotables"), 
-                          upgrade="never", 
-                          lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
-
-
-remotes::install_github("mojaveazure/seurat-disk", 
-    upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
-
-remotes::install_github("SamueleSoraggi/DoubletFinder", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/", 
-    upgrade="never")
-
-BiocManager::install(c("WGCNA", 
-                    "igraph", 
-                    "GeneOverlap", 
-                    'ggrepel'),
-                    update=FALSE, 
-                    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
 
 remotes::install_github("NightingaleHealth/ggforestplot",
     upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+remotes::install_github("jhrcook/ggasym", 
+     upgrade="never", 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+install.packages('GOplot', 
+    repos='http://cran.us.r-project.org', 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+install.packages('BiocManager', 
+    repos='http://cran.us.r-project.org', 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+BiocManager::install(c("org.Hs.eg.db", "org.Mm.eg.db", "org.Dm.eg.db"),
+    update=FALSE, 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+remotes::install_github(c("satijalab/seurat-data"),
+                          upgrade="never",
+                          lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+                          quiet=FALSE )
+
+remotes::install_github("mojaveazure/seurat-disk", 
+    upgrade="never", 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
+
+remotes::install_github("SamueleSoraggi/DoubletFinder", 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/", 
+    upgrade="never",
+    quiet=FALSE )
 
 remotes::install_github('smorabit/hdWGCNA', 
     ref='dev', 
     upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
