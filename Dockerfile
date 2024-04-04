@@ -58,13 +58,13 @@ RUN eval "$(/opt/bin/micromamba shell hook -s bash)" \
 ## R setup for usage in Rstudio 
  && mkdir -p /usr/RNAseq_in_Rstudio \
  && mv /usr/local/lib/R/site-library /opt/micromamba/envs/RNAseq_env/lib/R/ \
+ && cp /usr/local/lib/R/etc/Renviron.site /opt/micromamba/envs/RNAseq_env/lib/R/etc/ \
  && ln -s  /opt/micromamba/envs/RNAseq_env/lib/R/bin/R /opt/micromamba/envs/RNAseq_env/lib/R/R \
  && rm -rf /usr/local/lib/R \
  && ln -s /opt/micromamba/envs/RNAseq_env/lib/R/ /usr/local/lib/R \
  && mkdir -p /usr/Cirrocumulus/Data \
  && chown -R ucloud:ucloud /usr/RNAseq_in_Rstudio \
  && chown -R ucloud:ucloud /opt/micromamba
-
 
 ## cirrocumulus example data
 COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k

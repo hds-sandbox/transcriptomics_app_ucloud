@@ -6,6 +6,7 @@ channels:
     - pwwang
     - gwforg
     - maximinio
+    - anaconda
 dependencies:
     - anndata
     - bedtools
@@ -89,7 +90,7 @@ dependencies:
     - r-rcolorbrewer
     - r-readxl
     - r-remotes
-    - r-reticulate
+    - r-reticulate>=1.35
     - r-rfast
     - r-sceasy
     - r-sctransform
@@ -110,7 +111,6 @@ dependencies:
     - scrublet
     - slurm
     - snakemake
-    - snakemake 
     - sortmerna
     - star
     - stringtie

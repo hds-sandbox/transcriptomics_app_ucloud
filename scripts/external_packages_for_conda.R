@@ -19,6 +19,10 @@ if(token != "None"){
     print("###################")
     }
 
+install.packages('stringi', 
+    repos='http://cran.us.r-project.org', 
+    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
 
 remotes::install_github("NightingaleHealth/ggforestplot",
     upgrade="never", 
@@ -45,20 +49,22 @@ BiocManager::install(c("org.Hs.eg.db", "org.Mm.eg.db", "org.Dm.eg.db"),
     lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
-remotes::install_github(c("satijalab/seurat-data"),
+remotes::install_github(c("satijalab/seurat-data",
+                          "mojaveazure/seurat-disk",
+                          "SamueleSoraggi/DoubletFinder"),
                           upgrade="never",
                           lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
                           quiet=FALSE )
 
-remotes::install_github("mojaveazure/seurat-disk", 
-    upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+#remotes::install_github("mojaveazure/seurat-disk", 
+#    upgrade="never", 
+#    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+#    quiet=FALSE )
 
-remotes::install_github("SamueleSoraggi/DoubletFinder", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/", 
-    upgrade="never",
-    quiet=FALSE )
+#remotes::install_github("SamueleSoraggi/DoubletFinder", 
+#    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/", 
+#    upgrade="never",
+#    quiet=FALSE )
 
 remotes::install_github('smorabit/hdWGCNA', 
     ref='dev', 

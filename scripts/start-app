@@ -131,14 +131,3 @@ elif [ "${COURSE}" == "Advanced_SingleCell" ]; then
     micromamba activate RNAseq_env 
     /opt/micromamba/envs/RNAseq_env/bin/R -e "IRkernel::installspec(user=TRUE, name = 'r_scrna', displayname = 'R Adv Single Cell')"
     SHELL=/bin/bash jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
- 
-fi
-
-
-#Data converter
-elif [ "${COURSE}" == "DataConversion" ]; then
-    echo "-----> Chosen tool: data conversion"
-    eval "$(/opt/bin/micromamba shell hook -s bash)" 
-    micromamba activate RNAseq_env 
-
-fi
