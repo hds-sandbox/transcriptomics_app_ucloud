@@ -1,66 +1,27 @@
-setwd('/usr/RNAseq_in_Rstudio/renv')
+setwd('/opt/RNAseq_in_Rstudio/renv')
 
-Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
+library(httr)
 
-renv::init()
+if(token != "None"){
+    print("##########")
+    print("Your GITHUB token is")
+    print(token)
 
-options(renv.config.dependencies.limit = Inf)
+    # Create a config with your token
+    print("Your GITHUB token configuration is")
+    response <- GET("https://api.github.com/rate_limit",
+                add_headers(Authorization = paste("token", token, sep = " ")))
 
-print("Installing CRAN packages")
+    # Extract the rate limit data
+    rate_limit_data <- content(response)
 
-renv::install("BiocManager") #####
-renv::install("Matrix") ######
-#renv::install("bioc::Biobase")
-#renv::install("markdown")
-#renv::install("tidyverse")
-#renv::install("RColorBrewer")
-#renv::install("pheatmap")
-#renv::install("ggrepel")
-#renv::install("cowplot")
-#renv::install("Seurat")
-#renv::install("patchwork")
-#renv::install("sctransform")
-#renv::install("R.utils")
-#renv::install("ggbeeswarm")
-#renv::install("factoextra")
-#renv::install("FactoMineR")
-#renv::install("NMF")
-#renv::install("hexbin")
-#renv::install("statmod")
-#renv::install("GOplot")
-#renv::install("ggpubr")
-#renv::install("ggsci")
+    # Print the rate limit data
+    print(rate_limit_data)
+    print("###################")
+    }
 
-print("Installing Bioconductor packages")
+renv::activate()
 
-#renv::install(c("bioc::Biobase",
-#                "bioc::DESeq2", 
-#                "bioc::GenomeInfoDb",
-#                "bioc::clusterProfiler", 
-#                "bioc::DOSE", 
-#                "bioc::org.Hs.eg.db", 
-#                "bioc::org.Mm.eg.db", 
-#                "bioc::org.Dm.eg.db",
-#                "bioc::pathview", 
-#                "bioc::DEGreport", 
-#                "bioc::tximport", 
-#                "bioc::AnnotationHub", 
-#                "bioc::ensembldb", 
-#                "bioc::apeglm", 
-#                "bioc::ggnewscale", 
-#                "bioc::rhdf5", 
-#                "bioc::slingshot", 
-#                "bioc::gprofiler2",
-#                "bioc::multtest",
-#                "bioc::vsn",
-#                "bioc::airway"))
+renv::restore()
 
-print("Installing github packages")
-
-#renv::update("Matrix")
-#renv::install(c("satijalab/seurat-wrappers","satijalab/seurat-data","stephenturner/annotables","mojaveazure/seurat-disk"))
-
-# setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
-#renv::install(c("Signac","metap"))
-
-renv::snapshot()
+print("hello")
