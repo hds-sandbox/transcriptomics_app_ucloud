@@ -1,4 +1,4 @@
-setwd('/opt/RNAseq_in_Rstudio/renv')
+#setwd('/opt/RNAseq_in_Rstudio/renv')
 
 library(httr)
 
@@ -20,8 +20,8 @@ if(token != "None"){
     print("###################")
     }
 
-renv::activate()
+renv::init()
 
-renv::restore()
+renv::restore(lockfile='/opt/RNAseq_in_Rstudio/renv')
 
 print("hello")
