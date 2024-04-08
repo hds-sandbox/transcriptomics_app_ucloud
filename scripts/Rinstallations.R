@@ -1,6 +1,10 @@
-setwd('/opt/RNAseq_in_Rstudio/renv')
+#setwd('/opt/RNAseq_in_Rstudio/renv')
 
-Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/renv/cache')
+#Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/renv/cache')
+
+setwd('/usr/RNAseq_in_Rstudio/renv')
+
+Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
 
 renv::init()
 
@@ -134,3 +138,5 @@ remotes::install_github('smorabit/hdWGCNA',
                          ref='dev', 
                          upgrade="never",
                          quiet=FALSE )
+
+renv::snapshot(, prompt=FALSE)
