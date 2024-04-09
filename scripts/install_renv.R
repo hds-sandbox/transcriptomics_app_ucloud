@@ -4,6 +4,7 @@ Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
 
 library(httr)
 
+token = "None"
 if(token != "None"){
     print("##########")
     print("Your GITHUB token is")
