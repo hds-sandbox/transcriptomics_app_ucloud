@@ -1,6 +1,6 @@
-setwd('/usr/RNAseq_in_Rstudio/renv')
+setwd('/opt/RNAseq_in_Rstudio')
 
-Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
+Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/cache')
 
 library(httr)
 
