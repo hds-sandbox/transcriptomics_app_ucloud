@@ -17,6 +17,7 @@ COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/Rinstallations.R /tmp
 COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
+COPY --chown=ucloud:ucloud ./renv.test.lock /tmp
 
 ## Env variables for micromamba and for compiling of R packages
 ENV MAMBA_ROOT_PREFIX /opt/micromamba
