@@ -34,13 +34,13 @@ RUN echo "GITHUB_PAT is $GITHUB_PAT"
 ##Installations for usage in Rstudio
 #RUN apt-get update \
 # && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev curl \
-RUN chown -R ucloud:ucloud /usr/ \
+RUN chown -R ucloud:ucloud /opt \
  && mkdir -p /opt/RNAseq_in_Rstudio/ \
  && chown -R ucloud:ucloud /tmp/ \
  && cp /tmp/renv.test.lock /opt/RNAseq_in_Rstudio/renv.lock \
  && R -e  "token <- Sys.getenv('MY_GITHUB_TOKEN'); source(file='/tmp/install_renv.R')" \
- && cat /tmp/set_Rprofile.R > ~/.Rprofile
-
+ && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
+ && chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
 
 #RUN chown -R ucloud:ucloud /opt/ \
 # && chown -R ucloud:ucloud /tmp/ \

@@ -1,6 +1,6 @@
 setwd('/opt/RNAseq_in_Rstudio')
 
-Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/cache')
+Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/cache')
 
 library(httr)
 
@@ -25,7 +25,7 @@ if(token != "None"){
 
 renv::init()
 
-renv::restore(lockfile='/usr/RNAseq_in_Rstudio/renv/renv.lock', 
+renv::restore(lockfile='/opt/RNAseq_in_Rstudio/renv.lock', 
              prompt=FALSE)
 
 print("hello")

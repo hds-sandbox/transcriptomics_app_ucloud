@@ -1,14 +1,5 @@
 {
-  "R": {
-    "Version": "4.3.2",
-    "Repositories": [
-      {
-        "Name": "CRAN",
-        "URL": "https://p3m.dev/cran/latest"
-      }
-    ]
-  },    
-  "DoubletFinder": {
+      "DoubletFinder": {
       "Package": "DoubletFinder",
       "Version": "2.0.3",
       "Source": "GitHub",
@@ -25,6 +16,5 @@
         "parallel"
       ],
       "Hash": "008a5e48aac2c3e3ab1dbac0df9bde1a"
-  }
+    }
 }
-

@@ -5,7 +5,7 @@ setHook("rstudio.sessionInit", function(newSession) {
 
 
 Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/cache')
-renv::load(project = '/opt/RNAseq_in_Rstudio/')
+renv::load(project = '/opt/RNAseq_in_Rstudio')
 
 #Sys.setenv(R_HOME='/opt/micromamba/envs/RNAseq_env/lib/R')
 #Sys.setenv(R_LIBS='/opt/micromamba/envs/RNAseq_env/lib/R/library')
