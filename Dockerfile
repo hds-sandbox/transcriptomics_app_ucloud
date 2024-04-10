@@ -9,8 +9,7 @@ LABEL software="Transcriptomics sandbox" \
 USER 0
 
 ## Copy files
-COPY scripts/environment.yml /tmp
-COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
+COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
 COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /tmp
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
@@ -19,14 +18,6 @@ COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
 COPY --chown=ucloud:ucloud ./renv.test.lock /tmp
 
-## Env variables for micromamba and for compiling of R packages
-ENV MAMBA_ROOT_PREFIX /opt/micromamba
-#ENV R_HOME /opt/micromamba/envs/RNAseq_env/lib/R
-#ENV R_LIBS /opt/micromamba/envs/RNAseq_env/lib/R/library
-#ENV CC /opt/micromamba/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-gcc
-#ARG MY_GITHUB_TOKEN="None"
-#ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
-#RUN echo "MY_GITHUB_TOKEN is $MY_GITHUB_TOKEN"
 ARG GITHUB_PAT="None"
 ENV GITHUB_PAT=$GITHUB_PAT
 RUN echo "GITHUB_PAT is $GITHUB_PAT"
@@ -34,13 +25,24 @@ RUN echo "GITHUB_PAT is $GITHUB_PAT"
 ##Installations for usage in Rstudio
 #RUN apt-get update \
 # && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev curl \
-RUN chown -R ucloud:ucloud /opt \
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev curl \
  && mkdir -p /opt/RNAseq_in_Rstudio/ \
+ && chown -R ucloud:ucloud /opt \
  && chown -R ucloud:ucloud /tmp/ \
- && cp /tmp/renv.test.lock /opt/RNAseq_in_Rstudio/renv.lock \
- && R -e  "token <- Sys.getenv('MY_GITHUB_TOKEN'); source(file='/tmp/install_renv.R')" \
- && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
+ && cp /tmp/renv.lock /opt/RNAseq_in_Rstudio/renv.lock \
+ && R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" 
+
+ COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
+ RUN cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
  && chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
+
+ #RUN cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
+ #&& chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
+ #ENV MAMBA_ROOT_PREFIX /opt/micromamba
+ #ENV R_HOME /opt/micromamba/envs/RNAseq_env/lib/R
+ #ENV R_LIBS /opt/micromamba/envs/RNAseq_env/lib/R/library
+ #ENV CC /opt/micromamba/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-gcc
 
 #RUN chown -R ucloud:ucloud /opt/ \
 # && chown -R ucloud:ucloud /tmp/ \
@@ -74,7 +76,7 @@ RUN chown -R ucloud:ucloud /opt \
 # && chown -R ucloud:ucloud /opt/micromamba
 
 ## cirrocumulus example data
-#COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
+COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
 ## entrypoint script
 COPY --chown=ucloud:ucloud ./scripts/start-app /usr/bin/start-app
 RUN chmod +x /usr/bin/start-app

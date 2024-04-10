@@ -139,4 +139,5 @@ remotes::install_github('smorabit/hdWGCNA',
                          upgrade="never",
                          quiet=FALSE )
 
+renv::settings$snapshot.type("all")
 renv::snapshot(prompt=FALSE)
