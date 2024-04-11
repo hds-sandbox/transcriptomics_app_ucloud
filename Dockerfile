@@ -61,7 +61,7 @@ RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C
  && /opt/micromamba/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
  && eval "$(/opt/bin/micromamba shell hook -s bash)" \
  && micromamba activate RNAseq_env \
- && /opt/micromamba/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('MY_GITHUB_TOKEN'); source(file='/tmp/external_packages_for_conda.R')" \ 
+ && /opt/micromamba/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
  && mkdir -p /usr/Cirrocumulus/Data \
  && chown -R ucloud:ucloud /opt/micromamba
 
