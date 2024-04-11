@@ -20,15 +20,8 @@ printf "======================  \n\n"
 
 # RNAseq in Rstudio sandbox
 if [ "${COURSE}" == "RNAseq_in_Rstudio" ]; then
-    echo "-----> Chosen module: RNAseq in Rstudio"
-    echo "Loading environment"
-
-    # Load renv environment and display welcome message
-    cat /tmp/set_Rprofile.R > ~/.Rprofile
-
-    #eval "$(/opt/bin/micromamba shell hook -s bash)" 
-    #micromamba activate RNAseq_env 
-
+    echo "-----> Chosen module: Rstudio"
+    echo "with packages for RNAseq analysis"
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
     printf "=================== \n\n"
@@ -61,14 +54,12 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
         echo "-----> Downloading fresh course material."
         # download here materials from zenodo
         bash /tmp/download_bulkRNAseq.sh
+        micromamba deactivate
 
     else
         echo "-----> Using your own course material."
 
     fi
-    
-    echo "Loading environment"
-    cat /tmp/set_Rprofile.R >~/.Rprofile
     
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
@@ -86,14 +77,12 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
         echo "-----> Downloading fresh course material."
         # download here materials from zenodo
         bash /tmp/download_scRNAseq.sh
+        micromamba deactivate
 
     else
         echo "-----> Using your own course material."
 
     fi
-    
-    echo "Loading environment"
-    cat /tmp/set_Rprofile.R > ~/.Rprofile
     
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
@@ -103,7 +92,8 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
 
 #RNAsequencing development on jupyterlab
 elif [ "${COURSE}" == "RNAseq_CLI" ]; then
-    echo "-----> Chosen environment: RNAseq CLI"
+    echo "-----> Chosen environment: Jupyterlab for CLI,"
+    echo "python and R RNAseq analysis"
 
     printf "\n========================  "
     printf "\n== Start RNAseq CLI ==  \n"
@@ -111,6 +101,7 @@ elif [ "${COURSE}" == "RNAseq_CLI" ]; then
 
     eval "$(/opt/bin/micromamba shell hook -s bash)" 
     micromamba activate RNAseq_env 
+    /opt/micromamba/envs/RNAseq_env/bin/R -e "IRkernel::installspec(user=TRUE, name = 'r_scrna', displayname = 'R analysis')"
     SHELL=/bin/bash jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
 
 
@@ -131,3 +122,4 @@ elif [ "${COURSE}" == "Advanced_SingleCell" ]; then
     micromamba activate RNAseq_env 
     /opt/micromamba/envs/RNAseq_env/bin/R -e "IRkernel::installspec(user=TRUE, name = 'r_scrna', displayname = 'R Adv Single Cell')"
     SHELL=/bin/bash jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
+fi
