@@ -2,7 +2,7 @@ FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.3.2
 
 LABEL software="Transcriptomics sandbox" \
     author="Jose Alejandro Romero Herrera <jose.romero@sund.ku.dk>, Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez" \
-    version="2024.02" \
+    version="2024.04" \
     license="MIT" \
     description="Transcriptomics sandbox with modules and courses"
 
