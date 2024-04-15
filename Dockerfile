@@ -31,6 +31,7 @@ RUN apt-get update \
  && chown -R ucloud:ucloud /tmp/ \
  && cp /tmp/renv.lock /opt/RNAseq_in_Rstudio/renv.lock \
  && R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
  && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
  && rm /opt/RNAseq_in_Rstudio/.Rprofile \
  && chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
