@@ -8,16 +8,11 @@ LABEL software="Transcriptomics sandbox" \
 
 USER 0
 
-## Copy files
-COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
-COPY --chown=ucloud:ucloud ./scripts/welcome_message.md /tmp
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
-COPY --chown=ucloud:ucloud ./scripts/Rinstallations.R /tmp
 COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
 COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
-COPY scripts/external_packages_for_conda.R /tmp
 
 ARG GITHUB_PAT="None"
 ENV GITHUB_PAT=$GITHUB_PAT
@@ -37,6 +32,8 @@ RUN apt-get update \
  && chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
 
 ##Correct CC for environment
+COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
+COPY  --chown=ucloud:ucloud scripts/external_packages_for_conda.R /tmp
 ENV MAMBA_ROOT_PREFIX /opt/micromamba
 ENV CC /opt/micromamba/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-gcc
 
@@ -45,10 +42,9 @@ RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C
  && mkdir -p /opt/micromamba \
  && eval "$(/opt/bin/micromamba shell hook -s bash)" \
  && micromamba activate \
- && micromamba create -y -vv -n RNAseq_env -f /tmp/environment.yml \
+ && micromamba env create -y -vv -n RNAseq_env -f /tmp/environment.yml \
  && micromamba clean -y -a \
  ## pip installation and some other R packages
- && eval "$(/opt/bin/micromamba shell hook -s bash)" \
  && micromamba activate RNAseq_env \
  #zenodo plugin to download the latest version
  && /opt/micromamba/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
@@ -60,7 +56,6 @@ RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj -C
  && /opt/micromamba/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
  && /opt/micromamba/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
  && /opt/micromamba/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
- && eval "$(/opt/bin/micromamba shell hook -s bash)" \
  && micromamba activate RNAseq_env \
  && /opt/micromamba/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
  && mkdir -p /usr/Cirrocumulus/Data \
