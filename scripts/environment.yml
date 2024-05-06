@@ -6,11 +6,9 @@ channels:
     - pwwang
     - gwforg
     - maximinio
-    - anaconda
 dependencies:
     - anndata
     - bedtools
-    - pydeseq2
     - bioconductor-airway
     - bioconductor-annotationhub
     - bioconductor-apeglm
@@ -35,16 +33,12 @@ dependencies:
     - bioconductor-tximport
     - bioconductor-vsn
     - bowtie2
-    - conda-forge::ipywidgets
-    - conda-forge::jupyter-dash
-    - conda-forge::plotly
     - eggnog-mapper
     - fastp
     - fastqc
     - gatk4
     - glpk
     - graphviz
-    - gwf
     - hisat2
     - interproscan
     - ipykernel
@@ -54,7 +48,6 @@ dependencies:
     - markdown
     - multiqc
     - nextflow
-    - python-nextflow
     - qualimap
     - r-annotables
     - r-cluster
@@ -77,10 +70,7 @@ dependencies:
     - r-httr
     - r-igraph
     - r-irkernel
-    - r-irkernel 
-    - r-knitr
-    - r-markdown
-    - r-matrix=1.6_1
+    - r-matrix>=1.6_5
     - r-metap
     - r-nmf
     - r-patchwork

@@ -1,4 +1,4 @@
-library(httr, lib.loc="/opt/micromamba/envs/RNAseq_env/lib/R/library/")
+library(httr, lib.loc="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
 
 # Your personal access token
 if(token != "None"){
@@ -21,39 +21,39 @@ if(token != "None"){
 
 install.packages('stringi', 
     repos='http://cran.us.r-project.org', 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 remotes::install_github("NightingaleHealth/ggforestplot",
     upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 remotes::install_github("jhrcook/ggasym", 
      upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 install.packages('GOplot', 
     repos='http://cran.us.r-project.org', 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 install.packages('BiocManager', 
     repos='http://cran.us.r-project.org', 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 BiocManager::install(c("org.Hs.eg.db", "org.Mm.eg.db", "org.Dm.eg.db"),
     update=FALSE, 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
 remotes::install_github(c("satijalab/seurat-data",
                           "mojaveazure/seurat-disk",
                           "SamueleSoraggi/DoubletFinder"),
                           upgrade="never",
-                          lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+                          lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
                           quiet=FALSE )
 
 #remotes::install_github("mojaveazure/seurat-disk", 
@@ -69,5 +69,5 @@ remotes::install_github(c("satijalab/seurat-data",
 remotes::install_github('smorabit/hdWGCNA', 
     ref='dev', 
     upgrade="never", 
-    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
