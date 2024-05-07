@@ -1,6 +1,6 @@
-setwd('/opt/RNAseq_in_Rstudio')
+setwd('/opt/renv_transcriptomics')
 
-Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/cache')
+Sys.setenv(RENV_PATHS_CACHE = '/opt/renv_transcriptomics/cache')
 
 library(httr)
 
@@ -25,10 +25,30 @@ if(token != "None"){
 
 renv::init()
 
-renv::restore(lockfile='/opt/RNAseq_in_Rstudio/renv.lock', 
+renv::restore(lockfile='/opt/renv_transcriptomics/renv.lock', 
              prompt=FALSE)
 
-print("hello")
+
+
+message("INSTALL GITHUB PACKAGES")
+
+renv::install(c(
+    "satijalab/seurat-data",
+    "mojaveazure/seurat-disk",
+    "SamueleSoraggi/DoubletFinder",
+    "stephenturner/annotables",
+    "cellgeni/sceasy",
+    "cysouw/qlcMatrix",
+    "satijalab/seurat-wrappers@community-vignette"
+  ),
+  upgrade = "never",
+  quiet = FALSE
+)
+
+remotes::install_github('smorabit/hdWGCNA', 
+                         ref='dev', 
+                         upgrade="never",
+                         quiet=FALSE )
 
 #15 3059.8 1: failed to resolve remote 'MacoskoLab/liger'; skipping 
 #15 3059.8 2: failed to resolve remote 'hms-dbmi/conos'; skipping 

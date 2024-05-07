@@ -1,10 +1,10 @@
-#setwd('/opt/RNAseq_in_Rstudio/renv')
+#setwd('/opt/renv_transcriptomics/renv')
 
-#Sys.setenv(RENV_PATHS_CACHE = '/opt/RNAseq_in_Rstudio/renv/cache')
+#Sys.setenv(RENV_PATHS_CACHE = '/opt/renv_transcriptomics/renv/cache')
 
-setwd('/usr/RNAseq_in_Rstudio/renv')
+setwd('/usr/renv_transcriptomics/renv')
 
-Sys.setenv(RENV_PATHS_CACHE = '/usr/RNAseq_in_Rstudio/renv/cache')
+Sys.setenv(RENV_PATHS_CACHE = '/usr/renv_transcriptomics/renv/cache')
 
 renv::init()
 

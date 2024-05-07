@@ -66,6 +66,7 @@ dependencies:
     - r-globals>=0.16.1
     - r-parallelly>=1.34.0
     - r-gprofiler2
+    - r-harmony>=1.0.1
     - r-hexbin
     - r-httr
     - r-igraph

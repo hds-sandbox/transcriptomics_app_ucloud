@@ -1,10 +1,10 @@
 FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.4.0
 
 LABEL software="Transcriptomics sandbox" \
-    author="Jose Alejandro Romero Herrera <jose.romero@sund.ku.dk>, Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez" \
-    version="2024.04" \
+    author="Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez, Jose Alejandro Romero Herrera" \
+    version="2024.05" \
     license="MIT" \
-    description="Transcriptomics sandbox with modules and courses"
+    description="Transcriptomics sandbox with tools and courses for bulk-RNA and single-cell transcriptomics analysis"
 
 USER 0
 
@@ -13,7 +13,6 @@ COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
-#ENV MAMBA_ROOT_PREFIX /opt/micromamba
 ENV CC /opt/miniconda/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-gcc
 ENV G_SLICE always-malloc
 COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
@@ -51,7 +50,17 @@ RUN apt-get update \
  && /opt/miniconda/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
  && chown -R ucloud:ucloud /opt/miniconda
 
-
+##Installations for usage in Rstudio
+RUN mkdir -p /opt/renv_transcriptomics/ \
+ && chown -R ucloud:ucloud /opt \
+ && chown -R ucloud:ucloud /tmp \
+ && unset CC \
+ && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
+ && R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
+ && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
+ && rm /opt/renv_transcriptomics/.Rprofile \
+ && chown -R ucloud:ucloud /opt/renv_transcriptomics
 
 #RUN apt-get update \
 # && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev curl \
@@ -95,9 +104,6 @@ RUN apt-get update \
  #&& cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
  #&& rm /opt/RNAseq_in_Rstudio/.Rprofile \
  #&& chown -R ucloud:ucloud /opt/RNAseq_in_Rstudio
-
-
-## Install micromamba and create environment for the modules
 
 
 ## cirrocumulus example data
