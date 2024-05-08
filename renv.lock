@@ -1473,57 +1473,6 @@
       ],
       "Hash": "4dd986eba717fb7f0550891b52e3bcd4"
     },
-    "SeuratData": {
-      "Package": "SeuratData",
-      "Version": "0.2.2.9001",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "satijalab",
-      "RemoteRepo": "seurat-data",
-      "RemoteRef": "master",
-      "RemoteSha": "4dc08e022f51c324bc7bf785b1b5771d2742701d",
-      "Requirements": [
-        "R",
-        "SeuratObject",
-        "cli",
-        "crayon",
-        "rappdirs",
-        "stats",
-        "utils"
-      ],
-      "Hash": "307a76017d3f321aaae56d6f71ac9d69"
-    },
-    "SeuratDisk": {
-      "Package": "SeuratDisk",
-      "Version": "0.0.0.9021",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "mojaveazure",
-      "RemoteRepo": "seurat-disk",
-      "RemoteRef": "master",
-      "RemoteSha": "877d4e18ab38c686f5db54f8cd290274ccdbe295",
-      "Remotes": "satijalab/seurat-data",
-      "Requirements": [
-        "Matrix",
-        "R",
-        "R6",
-        "Seurat",
-        "SeuratObject",
-        "cli",
-        "crayon",
-        "hdf5r",
-        "methods",
-        "rlang",
-        "stats",
-        "stringi",
-        "tools",
-        "utils",
-        "withr"
-      ],
-      "Hash": "4f1dcd3f315b0c62788c0e1660c145c1"
-    },
     "SeuratObject": {
       "Package": "SeuratObject",
       "Version": "5.0.1",
@@ -1550,33 +1499,6 @@
         "utils"
       ],
       "Hash": "424c2b9e50b053c86fc38f17e09917da"
-    },
-    "SeuratWrappers": {
-      "Package": "SeuratWrappers",
-      "Version": "0.2.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "satijalab",
-      "RemoteRepo": "seurat-wrappers",
-      "RemoteRef": "community-vignette",
-      "RemoteSha": "582039dfe29c6f1746599e7380023370cd6dd99d",
-      "Remotes": "MacoskoLab/liger, hms-dbmi/conos, immunogenomics/harmony, satijalab/seurat-data, velocyto-team/velocyto.R, SaskiaFreytag/schex@031320d, cole-trapnell-lab/monocle3, mojaveazure/seurat-disk",
-      "Requirements": [
-        "BiocManager",
-        "Matrix",
-        "R",
-        "Seurat",
-        "cowplot",
-        "ggplot2",
-        "igraph",
-        "methods",
-        "remotes",
-        "rsvd",
-        "stats",
-        "utils"
-      ],
-      "Hash": "33ea7896e00bd2bf1171a7a9410be5cf"
     },
     "Signac": {
       "Package": "Signac",
@@ -1865,22 +1787,6 @@
         "SummarizedExperiment"
       ],
       "Hash": "9f4cb1195db51dc6d6b49063b63492e2"
-    },
-    "annotables": {
-      "Package": "annotables",
-      "Version": "0.2.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "stephenturner",
-      "RemoteRepo": "annotables",
-      "RemoteRef": "master",
-      "RemoteSha": "d2e86c7e2ca024d332e0b77db208ae685f59a527",
-      "Requirements": [
-        "R",
-        "tibble"
-      ],
-      "Hash": "d31e63da61a6406c933538dac52154d9"
     },
     "annotate": {
       "Package": "annotate",
@@ -3980,31 +3886,6 @@
       ],
       "Hash": "9171f898db9d9c4c1b2c745adc2c1ef1"
     },
-    "hdWGCNA": {
-      "Package": "hdWGCNA",
-      "Version": "0.3.01",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "hdWGCNA",
-      "RemoteUsername": "smorabit",
-      "RemoteRef": "dev",
-      "RemoteSha": "8280ba5dc375bc44d92a312a5ff7a7b95aee2d85",
-      "Requirements": [
-        "Matrix",
-        "R",
-        "Seurat",
-        "WGCNA",
-        "dplyr",
-        "ggplot2",
-        "ggrepel",
-        "harmony",
-        "igraph",
-        "proxy",
-        "tester"
-      ],
-      "Hash": "bf67da27df7de41d3ad3d722cff54899"
-    },
     "hdf5r": {
       "Package": "hdf5r",
       "Version": "1.3.10",
@@ -5356,26 +5237,6 @@
       ],
       "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
     },
-    "qlcMatrix": {
-      "Package": "qlcMatrix",
-      "Version": "0.9.7",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "cysouw",
-      "RemoteRepo": "qlcMatrix",
-      "RemoteRef": "master",
-      "RemoteSha": "d919872f69b07b6cf892f725ed3d6e4569319206",
-      "Requirements": [
-        "Matrix",
-        "R",
-        "docopt",
-        "methods",
-        "slam",
-        "sparsesvd"
-      ],
-      "Hash": "d4c828e0e31c5aad4b159b717e6d084e"
-    },
     "qqconf": {
       "Package": "qqconf",
       "Version": "1.3.2",
@@ -5936,22 +5797,6 @@
         "stats"
       ],
       "Hash": "10ee4b91ec812690bd55d9bf51edccee"
-    },
-    "sceasy": {
-      "Package": "sceasy",
-      "Version": "0.0.7",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "cellgeni",
-      "RemoteRepo": "sceasy",
-      "RemoteRef": "master",
-      "RemoteSha": "c1c0bf973b0b3b67e013c01bf583d1fcc4c9f8cc",
-      "Requirements": [
-        "R",
-        "reticulate"
-      ],
-      "Hash": "ed806dad4a5ac1e3c27b26e6ca3f24ad"
     },
     "sctransform": {
       "Package": "sctransform",

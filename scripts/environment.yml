@@ -39,6 +39,7 @@ dependencies:
     - gatk4
     - glpk
     - graphviz
+    - gxx_linux-64
     - hisat2
     - interproscan
     - ipykernel

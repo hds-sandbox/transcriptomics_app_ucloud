@@ -13,7 +13,6 @@ COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
-ENV CC /opt/miniconda/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-gcc
 ENV G_SLICE always-malloc
 COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
 COPY  --chown=ucloud:ucloud scripts/external_packages_for_conda.R /tmp
@@ -35,11 +34,17 @@ RUN apt-get update \
  && conda env create -vv -p /opt/miniconda/envs/RNAseq_env -f /tmp/environment.yml \
  && conda clean -y -a
 
+ #ENV CC /opt/miniconda/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-cc
+ #ENV PATH=/opt/miniconda/envs/RNAseq_env/bin/:${PATH}
+ #/opt/miniconda/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-cc
+
  ## pip installation and some other R packages
- RUN /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
- #cirrocumulus installation
+ RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
+ && conda activate /opt/miniconda/envs/RNAseq_env \
+ && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
+ # cirrocumulus installation
  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \  
- #jupyterlab plugins
+ # jupyterlab plugins \
  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \  
  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
