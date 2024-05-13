@@ -36,36 +36,39 @@ RUN apt-get update \
  #/opt/miniconda/envs/RNAseq_env/bin/x86_64-conda-linux-gnu-cc
 
  ## pip installation and some other R packages
- RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
- && conda activate /opt/miniconda/envs/RNAseq_env \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
+ #RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
+ #&& conda activate /opt/miniconda/envs/RNAseq_env \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
  # cirrocumulus installation
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \  
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \  
  # jupyterlab plugins \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \  
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir plotly \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir ipywidgets \
- && /opt/miniconda/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
- && chown -R ucloud:ucloud /opt/miniconda
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \  
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
+ ##&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir plotly \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir ipywidgets \
+ #&& /opt/miniconda/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
+ #&& chown -R ucloud:ucloud /opt/miniconda
 
 COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
 COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
+ENV CFLAGS="-std=gnu99"
+ENV CC=gnu99
 
 ##Installations for usage in Rstudio
 RUN mkdir -p /opt/renv_transcriptomics/ \
- && chown -R ucloud:ucloud /opt \
+ && chown -R ucloud:ucloud /opt/renv_transcriptomics/ \
  && chown -R ucloud:ucloud /tmp \
  && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
- && R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
- && R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
+ && /usr/local/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && /usr/local/bin/R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
  && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
  && rm /opt/renv_transcriptomics/.Rprofile \
- && chown -R ucloud:ucloud /opt/renv_transcriptomics
+ && chown -R ucloud:ucloud /opt/renv_transcriptomics \
+ && conda deactivate
 
 #RUN apt-get update \
 # && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev curl \

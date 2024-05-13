@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.2",
+    "Version": "4.4.0",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -1383,21 +1383,6 @@
         "stats"
       ],
       "Hash": "3213a9826adb8f48e51af1e7b30fa568"
-    },
-    "S4Vectors": {
-      "Package": "S4Vectors",
-      "Version": "0.40.2",
-      "Source": "Bioconductor",
-      "Repository": "Bioconductor 3.18",
-      "Requirements": [
-        "BiocGenerics",
-        "R",
-        "methods",
-        "stats",
-        "stats4",
-        "utils"
-      ],
-      "Hash": "1716e201f81ced0f456dd5ec85fe20f8"
     },
     "ScaledMatrix": {
       "Package": "ScaledMatrix",
@@ -4000,8 +3985,7 @@
         "grDevices",
         "rlang",
         "utils"
-      ],
-      "Hash": "149431ee39aba5bdc264112c8ff94444"
+      ]
     },
     "htmlwidgets": {
       "Package": "htmlwidgets",
