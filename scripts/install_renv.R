@@ -2,9 +2,10 @@ setwd('/opt/renv_transcriptomics')
 
 Sys.setenv(RENV_PATHS_CACHE = '/opt/renv_transcriptomics/cache')
 
+options(renv.config.auto.snapshot = TRUE)
+
 library(httr)
 
-token = "None"
 if(token != "None"){
     print("##########")
     print("Your GITHUB token is")
@@ -27,8 +28,6 @@ renv::init()
 
 renv::restore(lockfile='/opt/renv_transcriptomics/renv.lock', 
              prompt=FALSE)
-
-
 
 message("INSTALL GITHUB PACKAGES")
 

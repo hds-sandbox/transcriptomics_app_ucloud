@@ -10,9 +10,6 @@ USER 0
 
 COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /tmp
 COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
-COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
-COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
-COPY --chown=ucloud:ucloud ./renv.lock /tmp
 ENV G_SLICE always-malloc
 COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
 COPY  --chown=ucloud:ucloud scripts/external_packages_for_conda.R /tmp
@@ -55,11 +52,14 @@ RUN apt-get update \
  && /opt/miniconda/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
  && chown -R ucloud:ucloud /opt/miniconda
 
+COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
+COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
+COPY --chown=ucloud:ucloud ./renv.lock /tmp
+
 ##Installations for usage in Rstudio
 RUN mkdir -p /opt/renv_transcriptomics/ \
  && chown -R ucloud:ucloud /opt \
  && chown -R ucloud:ucloud /tmp \
- && unset CC \
  && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
  && R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
  && R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
