@@ -53,10 +53,10 @@ COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
 COPY --chown=ucloud:ucloud ./renv.lock /tmp
 
 ##Installations for usage in Rstudio
-##dev libraries needed for Rhtslib installations
+##dev libraries needed for Rhtslib, RcppGSL, hdf5r, libfftw installations
 ##Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor 
 RUN apt-get update \
- && apt-get install --no-install-recommends -y liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
+ && apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
  && mkdir -p /opt/renv_transcriptomics/ \
  && mkdir -p ~/.R \
  && echo "CFLAGS= -fpic  -g -O2 -fstack-protector-strong -Wformat -Wdate-time -D_FORTIFY_SOURCE=2 -g -std=gnu99" > ~/.R/Makevars \
