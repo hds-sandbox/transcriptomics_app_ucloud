@@ -68,8 +68,10 @@ RUN apt-get update \
  && rm /opt/renv_transcriptomics/.Rprofile \
  && chown -R ucloud:ucloud /opt/renv_transcriptomics
 
- 
-##&& /usr/local/bin/R -e "remotes::install_version(\"renv\",\"0.15.5\")" \
+#RUN /usr/local/bin/R -e "remotes::install_version(\"renv\",\"1.0.3\")"
+#RUN echo "renv::load('/opt/renv_transcriptomics/')" > /home/ucloud/.Rprofile
+#RUN echo ".libPaths(c( .libPaths(), '/opt/renv_transcriptomics/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu'))" >> /home/ucloud/.Rprofile
+#RUN chmod 777 /home/ucloud/.Rprofile
 
 ## cirrocumulus example data
 #mkdir -p /usr/Cirrocumulus/Data \
