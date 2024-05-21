@@ -50,11 +50,12 @@ BiocManager::install(c("org.Hs.eg.db", "org.Mm.eg.db", "org.Dm.eg.db"),
     quiet=FALSE )
 
 remotes::install_github(c("satijalab/seurat-data",
-                          "mojaveazure/seurat-disk",
-                          "SamueleSoraggi/DoubletFinder"),
+                          "mojaveazure/seurat-disk"),
                           upgrade="never",
                           lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
                           quiet=FALSE )
+
+remotes::install_local("/tmp/doubletfinder.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
 
 #remotes::install_github("mojaveazure/seurat-disk", 
 #    upgrade="never", 

@@ -34,7 +34,6 @@ message("INSTALL GITHUB PACKAGES")
 renv::install(c(
     "satijalab/seurat-data",
     "mojaveazure/seurat-disk",
-    "SamueleSoraggi/DoubletFinder",
     "stephenturner/annotables",
     "cellgeni/sceasy",
     "cysouw/qlcMatrix",
@@ -44,10 +43,14 @@ renv::install(c(
   quiet = FALSE
 )
 
+
+remotes::install_local("/tmp/doubletfinder.zip")
+
 remotes::install_github('smorabit/hdWGCNA', 
                          ref='dev', 
                          upgrade="never",
                          quiet=FALSE )
+                        
 
 #15 3059.8 1: failed to resolve remote 'MacoskoLab/liger'; skipping 
 #15 3059.8 2: failed to resolve remote 'hms-dbmi/conos'; skipping 

@@ -31,6 +31,8 @@ RUN apt-get update \
  && conda env create -vv -p /opt/miniconda/envs/RNAseq_env -f /tmp/environment.yml \
  && conda clean -y -a
 
+ COPY  --chown=ucloud:ucloud ./scripts/doubletfinder.zip /tmp
+
  ## pip installation and some other R packages
  RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
  && conda activate /opt/miniconda/envs/RNAseq_env \
