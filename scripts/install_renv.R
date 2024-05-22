@@ -26,10 +26,13 @@ if(token != "None"){
 
 renv::init()
 
+
 renv::restore(lockfile='/opt/renv_transcriptomics/renv.lock', 
              prompt=FALSE)
 
 message("INSTALL GITHUB PACKAGES")
+
+remotes::install_local("/tmp/ggforestplot.zip")
 
 renv::install(c(
     "satijalab/seurat-data",

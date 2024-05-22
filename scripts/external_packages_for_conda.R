@@ -24,10 +24,13 @@ install.packages('stringi',
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
-remotes::install_github("NightingaleHealth/ggforestplot",
-    upgrade="never", 
-    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+remotes::install_local("/tmp/ggforestplot.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
+
+
+#remotes::install_github("NightingaleHealth/ggforestplot",
+#    upgrade="never", 
+#    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
+#    quiet=FALSE )
 
 remotes::install_github("jhrcook/ggasym", 
      upgrade="never", 
