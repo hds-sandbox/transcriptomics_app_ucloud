@@ -32,6 +32,7 @@ RUN apt-get update \
  && conda clean -y -a
 
  COPY  --chown=ucloud:ucloud ./scripts/doubletfinder.zip /tmp
+ COPY  --chown=ucloud:ucloud ./scripts/ggforestplot.zip /tmp
 
  ## pip installation and some other R packages
  RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
