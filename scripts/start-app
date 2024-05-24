@@ -120,6 +120,7 @@ elif [ "${COURSE}" == "Advanced_SingleCell" ]; then
 
     eval "$(/opt/miniconda/bin/conda shell.bash hook)" 
     conda activate /opt/miniconda/envs/RNAseq_env 
+    echo ".libPaths(c(\"/opt/miniconda/envs/RNAseq_env/lib/R/library/\"))" > /home/ucloud/.Rprofile
     /opt/miniconda/envs/RNAseq_env/bin/R -e "IRkernel::installspec(user=TRUE, name = 'r_scrna', displayname = 'R Adv Single Cell')"
     SHELL=/bin/bash jupyter-lab --port=8787 --ip=0.0.0.0 --NotebookApp.token='' --no-browser
 fi
