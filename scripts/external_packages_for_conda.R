@@ -28,6 +28,7 @@ remotes::install_local("/tmp/ggforestplot.zip", lib="/opt/miniconda/envs/RNAseq_
 
 remotes::install_version('Matrix','1.6-4', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
 remotes::install_version('irlba','2.3.5.1', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
+remotes::install_version('ggplot2','3.4.4', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
 #remotes::install_github("NightingaleHealth/ggforestplot",
 #    upgrade="never", 
 #    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
