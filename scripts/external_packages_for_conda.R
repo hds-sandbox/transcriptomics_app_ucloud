@@ -35,7 +35,7 @@ remotes::install_version('ggplot2','3.4.4', upgrade = 'never', lib.loc='/opt/min
 #    quiet=FALSE )
 
 remotes::install_github("jhrcook/ggasym", 
-     upgrade="never", 
+    upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
