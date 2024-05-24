@@ -63,20 +63,20 @@ RUN sudo apt-get update \
 ## Installations for usage in Rstudio
 ## dev libraries needed for Rhtslib, RcppGSL, hdf5r, libfftw installations
 ## Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor
-#RUN sudo apt-get update \
-# && sudo apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
-# && sudo apt-get clean \
-# && sudo rm -rf /var/lib/apt/lists/* \
-# && sudo mkdir -p /opt/renv_transcriptomics/ \
-# && mkdir -p ~/.R \
-# && echo "CFLAGS= -fpic  -g -O2 -fstack-protector-strong -Wformat -Wdate-time -D_FORTIFY_SOURCE=2 -g -std=gnu99" > ~/.R/Makevars \
-# && sudo chown -R "$USERID":"$GROUPID" /opt/renv_transcriptomics/ \
-# && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
-# && export GITHUB_PAT="$GITHUB_PAT" \
-# && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
-# && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
-# && rm /opt/renv_transcriptomics/.Rprofile \
-# && rm /tmp/doubletfinder.zip
+RUN sudo apt-get update \
+ && sudo apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && sudo mkdir -p /opt/renv_transcriptomics/ \
+ && mkdir -p ~/.R \
+ && echo "CFLAGS= -fpic  -g -O2 -fstack-protector-strong -Wformat -Wdate-time -D_FORTIFY_SOURCE=2 -g -std=gnu99" > ~/.R/Makevars \
+ && sudo chown -R "$USERID":"$GROUPID" /opt/renv_transcriptomics/ \
+ && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
+ && export GITHUB_PAT="$GITHUB_PAT" \
+ && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
+ && rm /opt/renv_transcriptomics/.Rprofile \
+ && rm /tmp/doubletfinder.zip
 
 ## cirrocumulus example data
 COPY --chown=$USERID:$GROUPID ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
