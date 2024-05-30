@@ -1,79 +1,88 @@
-FROM dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.4.0
+ARG BASE_IMAGE
+
+FROM $BASE_IMAGE
 
 LABEL software="Transcriptomics sandbox" \
-    author="Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez, Jose Alejandro Romero Herrera" \
-    version="2024.05" \
+    author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>, Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez" \
     license="MIT" \
-    description="Transcriptomics sandbox with tools and courses for bulk-RNA and single-cell transcriptomics analysis"
+    description="Transcriptomics sandbox with modules and courses"
 
-USER 0
+USER $USERID
 
-COPY --chown=ucloud:ucloud ./scripts/download_bulkRNAseq.sh /tmp
-COPY --chown=ucloud:ucloud ./scripts/download_scRNAseq.sh /tmp
 ENV G_SLICE always-malloc
-COPY  --chown=ucloud:ucloud ./scripts/environment.yml /tmp
-COPY  --chown=ucloud:ucloud scripts/external_packages_for_conda.R /tmp
-ARG GITHUB_PAT="None"
-ENV GITHUB_PAT=$GITHUB_PAT
-RUN echo "GITHUB_PAT is $GITHUB_PAT"
 
-RUN apt-get update \
- && apt-get install --no-install-recommends -y libjpeg9 build-essential libcurl4-openssl-dev  libxml2-dev libssl-dev libicu-dev \
- && mkdir -p /opt/miniconda \
- && chown -R ucloud:ucloud /opt/miniconda \
- && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda/miniconda.sh \
+## Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+## Copy files
+COPY --chown=$USERID:$GROUPID ./scripts/environment.yml /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/download_bulkRNAseq.sh /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/download_scRNAseq.sh /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/Rinstallations.R /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/install_renv.R /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/set_Rprofile.R /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/external_packages_for_conda.R /tmp
+COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/doubletfinder.zip /tmp
+
+ARG GITHUB_PAT
+
+RUN sudo apt-get update \
+ && sudo apt-get install --no-install-recommends -y build-essential libjpeg9 libcurl4-openssl-dev libxml2-dev libssl-dev libicu-dev \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && sudo mkdir -p /opt/miniconda \
+ && sudo chown -R "$USERID":"$GROUPID" /opt/miniconda \
+ && wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /opt/miniconda/miniconda.sh \
  && bash /opt/miniconda/miniconda.sh -b -u -p /opt/miniconda \
  && rm -rf /opt/miniconda/miniconda.sh \
  && eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
  && conda config --set channel_priority flexible \
- && conda install -n base --yes conda-libmamba-solver \
+ && conda install -n base --yes conda-libmamba-solver conda-forge::mamba \
  && conda config --set solver libmamba \
  && conda env create -vv -p /opt/miniconda/envs/RNAseq_env -f /tmp/environment.yml \
  && conda clean -y -a
 
- COPY  --chown=ucloud:ucloud ./scripts/doubletfinder.zip /tmp
-
  ## pip installation and some other R packages
  RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
- && conda activate /opt/miniconda/envs/RNAseq_env \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
- # cirrocumulus installation
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \  
- # jupyterlab plugins
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \  
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir plotly \
- && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir ipywidgets \
- && /opt/miniconda/envs/RNAseq_env/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')" \ 
- && chown -R ucloud:ucloud /opt/miniconda
+  && conda activate /opt/miniconda/envs/RNAseq_env \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
+  # cirrocumulus installation
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \
+  # jupyterlab plugins
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir plotly \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir ipywidgets \
+  && export GITHUB_PAT="$GITHUB_PAT" \
+  && /opt/miniconda/envs/RNAseq_env/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')"
 
-COPY --chown=ucloud:ucloud ./scripts/install_renv.R /tmp
-COPY --chown=ucloud:ucloud ./scripts/set_Rprofile.R /tmp
-COPY --chown=ucloud:ucloud ./renv.lock /tmp
-
-##Installations for usage in Rstudio
-##dev libraries needed for Rhtslib, RcppGSL, hdf5r, libfftw installations
-##Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor 
-RUN apt-get update \
- && apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
- && mkdir -p /opt/renv_transcriptomics/ \
+## Installations for usage in Rstudio
+## dev libraries needed for Rhtslib, RcppGSL, hdf5r, libfftw installations
+## Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor
+RUN sudo apt-get update \
+ && sudo apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
+ && sudo apt-get clean \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && sudo mkdir -p /opt/renv_transcriptomics/ \
  && mkdir -p ~/.R \
  && echo "CFLAGS= -fpic  -g -O2 -fstack-protector-strong -Wformat -Wdate-time -D_FORTIFY_SOURCE=2 -g -std=gnu99" > ~/.R/Makevars \
- && chown -R ucloud:ucloud /opt/renv_transcriptomics/ \
- && chown -R ucloud:ucloud /tmp \
+ && sudo chown -R "$USERID":"$GROUPID" /opt/renv_transcriptomics/ \
  && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
- && /usr/local/bin/R -e  "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
- && cat /tmp/set_Rprofile.R > /home/ucloud/.Rprofile \
+ && export GITHUB_PAT="$GITHUB_PAT" \
+ && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
  && rm /opt/renv_transcriptomics/.Rprofile \
- && chown -R ucloud:ucloud /opt/renv_transcriptomics
+ && rm /tmp/doubletfinder.zip
 
 ## cirrocumulus example data
-COPY --chown=ucloud:ucloud ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
+COPY --chown=$USERID:$GROUPID ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
+
 ## entrypoint script
-COPY --chown=ucloud:ucloud ./scripts/start-app /usr/bin/start-app
-RUN chmod +x /usr/bin/start-app
+COPY --chown=$USERID:$GROUPID ./scripts/start-app /usr/bin/start-app
+RUN chmod 755 /usr/bin/start-app
+
 WORKDIR /work
-USER 11042

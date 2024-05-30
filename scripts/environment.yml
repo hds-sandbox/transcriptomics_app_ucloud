@@ -63,6 +63,7 @@ dependencies:
     - r-ggnewscale
     - r-ggpubr
     - r-ggrepel
+    - r-ggplot2=3.4.4
     - r-ggsci
     - r-globals>=0.16.1
     - r-parallelly>=1.34.0
@@ -71,11 +72,12 @@ dependencies:
     - r-hexbin
     - r-httr
     - r-igraph
+    - r-irlba=2.3.5.1
     - r-irkernel
-    - r-matrix>=1.6_5
+    - r-matrix=1.6_4
     - r-metap
     - r-nmf
-    - r-patchwork
+    - r-patchwork=1.1.3
     - r-pheatmap
     - r-qlcmatrix
     - r-r.utils
