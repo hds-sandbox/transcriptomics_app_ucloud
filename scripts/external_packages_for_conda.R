@@ -24,16 +24,17 @@ install.packages('stringi',
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
     quiet=FALSE )
 
-remotes::install_local("/tmp/ggforestplot.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
+#remotes::install_local("/tmp/ggforestplot.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
 
 #remotes::install_version('Matrix','1.6-4', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
 #remotes::install_version('irlba','2.3.5.1', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
 #remotes::install_version('ggplot2','3.4.4', upgrade = 'never', lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
 #remotes::install_version("patchwork", "1.1.3", upgrade="never", lib.loc='/opt/miniconda/envs/RNAseq_env/lib/R/library/')
-#remotes::install_github("NightingaleHealth/ggforestplot",
-#    upgrade="never", 
-#    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-#    quiet=FALSE )
+
+remotes::install_github("NightingaleHealth/ggforestplot",
+    upgrade="never", 
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
+    quiet=FALSE )
 
 remotes::install_github("jhrcook/ggasym", 
     upgrade="never", 
@@ -61,20 +62,21 @@ remotes::install_github(c("satijalab/seurat-data",
                           lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
                           quiet=FALSE )
 
-remotes::install_local("/tmp/doubletfinder.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
+#remotes::install_local("/tmp/doubletfinder.zip", 
+#    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
 
 #remotes::install_github("mojaveazure/seurat-disk", 
 #    upgrade="never", 
 #    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/",
 #    quiet=FALSE )
 
-#remotes::install_github("SamueleSoraggi/DoubletFinder", 
-#    lib="/opt/micromamba/envs/RNAseq_env/lib/R/library/", 
-#    upgrade="never",
-#    quiet=FALSE )
+remotes::install_github("SamueleSoraggi/DoubletFinder", 
+    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/", 
+    upgrade="never",
+    quiet=FALSE )
 
-remotes::install_github('smorabit/hdWGCNA@v0.3.00', 
+remotes::install_github('smorabit/hdWGCNA@6bb2fc9fd31338b12bb6b68d2f8f90080d532a4e', 
     ref='dev', 
     upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=FALSE)

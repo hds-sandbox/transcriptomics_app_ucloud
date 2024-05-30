@@ -32,11 +32,14 @@ renv::restore(lockfile='/opt/renv_transcriptomics/renv.lock',
 
 message("INSTALL GITHUB PACKAGES")
 
-remotes::install_local("/tmp/ggforestplot.zip")
+remotes::install_github("NightingaleHealth/ggforestplot",
+    upgrade = "never",
+    quiet = FALSE)
 
 renv::install(c(
     "satijalab/seurat-data",
     "mojaveazure/seurat-disk",
+    "SamueleSoraggi/DoubletFinder",,
     "stephenturner/annotables",
     "cellgeni/sceasy",
     "cysouw/qlcMatrix",
@@ -46,10 +49,7 @@ renv::install(c(
   quiet = FALSE
 )
 
-
-remotes::install_local("/tmp/doubletfinder.zip")
-
-remotes::install_github('smorabit/hdWGCNA@v0.3.00', 
+remotes::install_github('smorabit/hdWGCNA@6bb2fc9fd31338b12bb6b68d2f8f90080d532a4e', 
                          ref='dev', 
                          upgrade="never",
                          quiet=FALSE )
