@@ -67,7 +67,7 @@ remotes::install_local("/tmp/doubletfinder.zip", lib="/opt/miniconda/envs/RNAseq
 #    upgrade="never",
 #    quiet=FALSE )
 
-remotes::install_github('smorabit/hdWGCNA', 
+remotes::install_github('smorabit/hdWGCNA@v0.3.00', 
     ref='dev', 
     upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",

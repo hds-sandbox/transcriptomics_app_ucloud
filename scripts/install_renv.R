@@ -46,7 +46,7 @@ renv::install(c(
 
 remotes::install_local("/tmp/doubletfinder.zip")
 
-remotes::install_github('smorabit/hdWGCNA', 
+remotes::install_github('smorabit/hdWGCNA@v0.3.00', 
                          ref='dev', 
                          upgrade="never",
                          quiet=FALSE )
