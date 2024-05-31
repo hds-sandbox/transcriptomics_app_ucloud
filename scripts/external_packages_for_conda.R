@@ -75,7 +75,7 @@ remotes::install_github("SamueleSoraggi/DoubletFinder",
     upgrade="never",
     quiet=FALSE )
 
-remotes::install_github('smorabit/hdWGCNA@6bb2fc9fd31338b12bb6b68d2f8f90080d532a4e', 
+remotes::install_github('smorabit/hdWGCNA@69110d0aefdb0601a1215b232a83b29017a39dae', 
     ref='dev', 
     upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
