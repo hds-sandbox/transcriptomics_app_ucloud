@@ -22,7 +22,7 @@ if(token != "None"){
 install.packages('stringi', 
     repos='http://cran.us.r-project.org', 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=FALSE)
 
 #remotes::install_local("/tmp/ggforestplot.zip", lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
 

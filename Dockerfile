@@ -75,8 +75,7 @@ RUN sudo apt-get update \
  && export GITHUB_PAT="$GITHUB_PAT" \
  && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
  && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
- && rm /opt/renv_transcriptomics/.Rprofile \
- && rm /tmp/doubletfinder.zip
+ && rm /opt/renv_transcriptomics/.Rprofile 
 
 ## cirrocumulus example data
 COPY --chown=$USERID:$GROUPID ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
