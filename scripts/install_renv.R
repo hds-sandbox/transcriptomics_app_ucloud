@@ -39,7 +39,7 @@ remotes::install_github("NightingaleHealth/ggforestplot",
 renv::install(c(
     "satijalab/seurat-data",
     "mojaveazure/seurat-disk",
-    "SamueleSoraggi/DoubletFinder",,
+    "SamueleSoraggi/DoubletFinder",
     "stephenturner/annotables",
     "cellgeni/sceasy",
     "cysouw/qlcMatrix",
