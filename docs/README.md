@@ -19,12 +19,13 @@ The available modules are:
 | **Introduction to single cell RNAseq analysis** |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/scRNAseq_course/) | R (in Rstudio) |
 | **Advanced single cell analysis** |<div style="text-align: justify"> Research-based examples for advanced topics in single cell analysis </div> | [Webpage](https://hds-sandbox.github.io/AdvancedSingleCell/) | R, python, bash (in jupyterlab) |
 
-**Note**: Course materials will automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, respectively, in the submission page ([see below](#additional-options)).
+**Note**: Course materials will be automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, respectively, in the submission page ([see below](#additional-options)).
 
 ## Save your work
 
 Everything saved in the `/work` folder will be saved in your user folder after you finish your job in UCloud. The `/work` folder is the default folder when you start working in the sandbox. All the saved material is found in your personal folder, usually called `Username#Number`, under the subfolder `Jobs`: here you find all the softwares you executed, and for each execution the saved material which you can retrieve.
 
+ <a id="additional-options"></a>
 ## Additional options
 
 Before submitting the app, you can choose the amount of resources you need. Additionally, you can add folders so that they will be visible when using the app. Adding folders is useful if:
