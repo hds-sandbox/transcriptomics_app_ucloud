@@ -24,6 +24,7 @@ COPY --chown=$USERID:$GROUPID ./scripts/set_Rprofile.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/external_packages_for_conda.R /tmp
 COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/doubletfinder.zip /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/hdWGCNA-69110d0.zip /tmp
 
 ARG GITHUB_PAT
 
