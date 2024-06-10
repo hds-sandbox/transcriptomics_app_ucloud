@@ -49,11 +49,14 @@ renv::install(c(
   quiet = FALSE
 )
 
-remotes::install_github('smorabit/hdWGCNA@69110d0aefdb0601a1215b232a83b29017a39dae', 
-                         ref='dev', 
+remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
                          upgrade="never",
-                         quiet=FALSE )
-                        
+                         quiet=FALSE)
+
+#remotes::install_github('smorabit/hdWGCNA@69110d0aefdb0601a1215b232a83b29017a39dae', 
+#                         ref='dev', 
+#                         upgrade="never",
+#                         quiet=FALSE )
 
 #15 3059.8 1: failed to resolve remote 'MacoskoLab/liger'; skipping 
 #15 3059.8 2: failed to resolve remote 'hms-dbmi/conos'; skipping 
