@@ -19,16 +19,40 @@ The available modules are:
 | **Introduction to single cell RNAseq analysis** |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/scRNAseq_course/) | R (in Rstudio) |
 | **Advanced single cell analysis** |<div style="text-align: justify"> Research-based examples for advanced topics in single cell analysis </div> | [Webpage](https://hds-sandbox.github.io/AdvancedSingleCell/) | R, python, bash (in jupyterlab) |
 
-**Note**: Course materials will be automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, respectively, in the submission page ([see below](#additional-options)).
 
-## Save your work
+**Note**: Course materials will be automatically downloaded unless you have "Added a folder" called `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, respectively, in the submission step of the transcriptomics app ([see below](#additional-options)).
 
-Everything saved in the `/work` folder will be saved in your user folder after you finish your job in UCloud. The `/work` folder is the default folder when you start working in the sandbox. All the saved material is found in your personal folder, usually called `Username#Number`, under the subfolder `Jobs`: here you find all the softwares you executed, and for each execution the saved material which you can retrieve.
+## How to use the modules
+
+Our modules are designed to be user-friendly and easy to use. Some are for self-learning and come from courses/workshop held in danish universities. Other are tools you can use for your own purpose. Here are some information to get you started:
+
+- **RNAseq in Rstudio** and **RNAseq_CLI** are based on Rstudio server and Jupyterlab, respectively. They do not contain any tutorial, just all the packages used in the tutorials of the transcriptomics sandbox. In Jupyterlab, you can both use the command line in the terminal and the notebooks through the available kernels.
+
+- **Cirrocumulus** is a tool to visualize single cell RNAseq data. You can explore datasets and visualize them in a user-friendly way. You can also print out gene expression plots, heatmaps and perform differential gene expression for selected cell groups.
+
+- In **Introduction to bulk RNAseq analysis** you can access all the notebooks of an introductory bulk RNA analysis course as below. Here you work with Rstudio. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/)
+
+![](BulkRNA_OpenNotebooks.gif)
+
+- In **Introduction to single cell RNAseq analysis** you can access all the notebooks of an introductory single cell RNA analysis course similarly as for the bulk RNA course above. Here you work with Rstudio. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/scRNAseq_course/)
+
+- In **Advanced single cell analysis** you can run various tutorials and examples of advanced single cell analysis. Here you work with Jupyterlab and Jupyter Notebooks. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/AdvancedSingleCell/). Look below to see how you access to the notebooks simply through the browser folder.
+
+![](AdvSingleCell_OpenNotebooks.gif)
+
+**Tip:** Make a copy of any notebook or R markdown, upload your own data, and replicate any analysis you wish on your own data by modifying the code we make available! 
+
+## Where your work is saved
+
+Every time you launch a module, everything is saved in the default folder you are working on. This  will be saved in your user folder after you finish your job in UCloud. The user folder is usually called `Username#Number`. This contains a folder called `Jobs`: here you find all the softwares you executed, and for each execution the saved material which you can retrieve.
+
+## Retrieving your work
+
+To retrieve your work, **add a folder** in the submission step of the transcriptomics app ([see below](#additional-options)) and name it `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, depending on which module you need to run. See the example below for the `AdvancedSingleCell` module:
+
+![](AddFolderFromCourse.gif)
 
  <a id="additional-options"></a>
 ## Additional options
 
-Before submitting the app, you can choose the amount of resources you need. Additionally, you can add folders so that they will be visible when using the app. Adding folders is useful if:
-
-- you want to use a folder containing **your own data and code**, with which you want to perform analysis with the Transcriptomics tools of a course/module
-- you want to continue working on the material **from a previous session** of the Transcriptomics Sandbox. In such a case, add the folder containing the material using the option `Add folder`.
+**Tip:** only the folders you add will be visible when using the app. If you upload data through the uCloud interface, remember to add the folder containing your data if you need to use a module on it.
