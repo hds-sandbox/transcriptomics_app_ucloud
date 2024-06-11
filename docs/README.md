@@ -26,21 +26,24 @@ The available modules are:
 
 Our modules are designed to be user-friendly and easy to use. Some are for self-learning and come from courses/workshop held in danish universities. Other are tools you can use for your own purpose. Here are some information to get you started:
 
-- **RNAseq in Rstudio** and **RNAseq_CLI** are based on Rstudio server and Jupyterlab, respectively. They do not contain any tutorial, just all the packages used in the tutorials of the transcriptomics sandbox. In Jupyterlab, you can both use the command line in the terminal and the notebooks through the available kernels.
+- **RNAseq in Rstudio** and **RNAseq_CLI** are based on Rstudio server and Jupyterlab, respectively. They do not contain any tutorial, just all the packages used in the tutorials of the transcriptomics sandbox. In Jupyterlab, you can both use the command line in the terminal and the notebooks through the available kernels. See the two animations below for how you start a notebook or a terminal in jupyterlab.
+
+    ![](RNAseqCLI_startNotebook.gif)
+    ![](RNAseqCLI_startCLI.gif)
 
 - **Cirrocumulus** is a tool to visualize single cell RNAseq data. You can explore datasets and visualize them in a user-friendly way. You can also print out gene expression plots, heatmaps and perform differential gene expression for selected cell groups.
 
 - In **Introduction to bulk RNAseq analysis** you can access all the notebooks of an introductory bulk RNA analysis course as below. Here you work with Rstudio. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/)
 
-![](BulkRNA_OpenNotebooks.gif)
+    ![](BulkRNA_OpenNotebooks.gif)
 
 - In **Introduction to single cell RNAseq analysis** you can access all the notebooks of an introductory single cell RNA analysis course similarly as for the bulk RNA course above. Here you work with Rstudio. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/scRNAseq_course/)
 
 - In **Advanced single cell analysis** you can run various tutorials and examples of advanced single cell analysis. Here you work with Jupyterlab and Jupyter Notebooks. Slides and other materials are available [through the webpage](https://hds-sandbox.github.io/AdvancedSingleCell/). Look below to see how you access to the notebooks simply through the browser folder.
 
-![](AdvSingleCell_OpenNotebooks.gif)
+    ![](AdvSingleCell_OpenNotebooks.gif)
 
-**Tip:** Make a copy of any notebook or R markdown, upload your own data, and replicate any analysis you wish on your own data by modifying the code we make available! 
+**Tip:** Make a copy of any notebook or R markdown, upload your own data (just use the upload function of Rstudio or JupyterLab), and replicate any analysis you wish on your own data by modifying the code we make available! 
 
 ## Where your work is saved
 
