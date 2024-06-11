@@ -12,9 +12,9 @@ The available modules are:
 
 | Modules name | Description | Links | Programming language |
 | :-----------: | :-----------: | :-----------: | :-----------: |
-| **RNAseq in Rstudio**  | <div style="text-align: justify"> Rstudio session with common bulk and single cell RNAseq packages such as DESeq2, Seurat and clusterProfiler. </div> | [Webpage](https://posit.co/) | R |
+| **RNAseq in Rstudio**  | <div style="text-align: justify"> Rstudio session with common bulk and single cell RNAseq packages such as DESeq2, Seurat and clusterProfiler. </div> | - | R |
 | **Cirrocumulus**  | <div style="text-align: justify"> Cirrocumulus is an interactive visualization tool for large-scale single-cell genomics data. </div> | [Webpage](https://cirrocumulus.readthedocs.io/en/latest/) | - |
-| **RNAseq_CLI**  | <div style="text-align: justify"> Jupyter lab session containing common transcriptomics tools (for single cell-RNA and bulk-RNA data analysis), ideal to create your own pipelines (snakemake, nextflow or gwf). It includes all packages from the Rstudio session as well. | |  Snakemake, R, python (in jupyterLab) |
+| **RNAseq_CLI**  | <div style="text-align: justify"> Jupyter lab session containing common transcriptomics tools (for single cell-RNA and bulk-RNA data analysis), ideal to create your own pipelines (snakemake, nextflow or gwf). It includes all packages from the Rstudio session as well. | - |  Snakemake, R, python (in jupyterLab) |
 | **Introduction to bulk RNAseq analysis** |<div style="text-align: justify"> A 3-day course to introduce bulk RNAseq analysis, from data alignment to bioinformatics analysis </div> | [Webpage](https://hds-sandbox.github.io/bulk_RNAseq_course/) | R, bash, Nextflow (in Rstudio) |
 | **Introduction to single cell RNAseq analysis** |<div style="text-align: justify"> A 2-day course to introduce single cell RNAseq analysis in R </div> | [Webpage](https://hds-sandbox.github.io/scRNAseq_course/) | R (in Rstudio) |
 | **Advanced single cell analysis** |<div style="text-align: justify"> Research-based examples for advanced topics in single cell analysis </div> | [Webpage](https://hds-sandbox.github.io/AdvancedSingleCell/) | R, python, bash (in jupyterLab) |
