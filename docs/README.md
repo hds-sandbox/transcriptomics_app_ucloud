@@ -48,11 +48,8 @@ Every time you launch a module, everything is saved in the default folder you ar
 
 ## Retrieving your work
 
-To retrieve your work, **add a folder** in the submission step of the transcriptomics app ([see below](#additional-options)) and name it `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, depending on which module you need to run. See the example below for the `AdvancedSingleCell` module:
+To retrieve your work from a previous session of a module, **add a folder** in the submission step of the transcriptomics app which is named `Intro_to_bulkRNAseq`, `Intro_to_scRNAseq_R` or `AdvancedSingleCell`, depending on which module you need to run. See the example below for the `Advanced Single Cell Analysis` module:
 
 ![](AddFolderFromCourse.gif)
 
- <a id="additional-options"></a>
-## Additional options
-
-**Tip:** only the folders you add will be visible when using the app. If you upload data through the uCloud interface, remember to add the folder containing your data if you need to use a module on it.
+**Tip:** only the folders you add in the submission step will be visible when using the app. If you upload data through the uCloud interface, remember to add the folder containing your data if you need to use a module on it.
