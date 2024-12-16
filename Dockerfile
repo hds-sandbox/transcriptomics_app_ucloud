@@ -3,7 +3,7 @@ ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
 LABEL software="Transcriptomics sandbox" \
-    author="Jose Alejandro Romero Herrera  <jose.romero@sund.ku.dk>, Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez" \
+    author="Samuele Soraggi <samuele@birc.au.dk>, Alba Refoyo Martinez" \
     license="MIT" \
     description="Transcriptomics sandbox with modules and courses"
 
@@ -47,7 +47,7 @@ RUN sudo apt-get update \
  ## pip installation and some other R packages
  RUN eval "$(/opt/miniconda/bin/conda shell.bash hook)" \
   && conda activate /opt/miniconda/envs/RNAseq_env \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/joseale2310/zenodo_get@patch-1 \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir git+https://github.com/hds-sandbox/zenodo_get@patch-1 \
   # cirrocumulus installation
   && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \
   # jupyterlab plugins

@@ -47,13 +47,25 @@ elif [ "${COURSE}" == "Cirrocumulus" ]; then
 elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
     echo "-----> Chosen course: Introduction to bulk RNAseq analysis in R"
 
-    if [ ! -d "Intro_to_bulkRNAseq" ]; then
+    if [ ! -d "Notebooks" ]; then
         eval "$(/opt/miniconda/bin/conda shell.bash hook)" 
         conda activate /opt/miniconda/envs/RNAseq_env 
 
         echo "-----> Downloading fresh course material."
+        #Clone the repo and move the notebooks, then remove
+        git clone --depth 1 https://github.com/hds-sandbox/bulk_RNAseq_course.git /tmp/course
+        mv /tmp/course/Notebooks .
+        rm -rf /tmp/course
+        #Download only data and unzip
+        zenodo_get 10.5281/zenodo.7116370 -w test.txt
+        wget `grep Data test.txt`
+        unzip Data.zip; rm Data.zip
+        #make the results folder
+        mkdir -p Results
+
+
         # download here materials from zenodo
-        bash /tmp/download_bulkRNAseq.sh
+        #bash /tmp/download_bulkRNAseq.sh
         conda deactivate
 
     else
@@ -61,6 +73,10 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
 
     fi
     
+    #bashrc file for conda
+    echo 'eval "$(/opt/miniconda/bin/conda shell.bash hook)"'>>/home/ucloud/.bashrc   
+    conda 'activate /opt/miniconda/envs/RNAseq_env'>>/home/ucloud/.bashrc
+    #start a session of rstudio server
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
     printf "=================== \n\n"
