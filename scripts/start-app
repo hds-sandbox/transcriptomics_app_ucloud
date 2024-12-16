@@ -63,9 +63,6 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
         #make the results folder
         mkdir -p Results
 
-
-        # download here materials from zenodo
-        #bash /tmp/download_bulkRNAseq.sh
         conda deactivate
 
     else
@@ -88,11 +85,22 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
     echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
 
     if [ ! -d "Intro_scRNAseq_R" ]; then
+
         eval "$(/opt/miniconda/bin/conda shell.bash hook)" 
-        conda activate /opt/miniconda/envs/RNAseq_env
+        conda activate /opt/miniconda/envs/RNAseq_env 
+
         echo "-----> Downloading fresh course material."
-        # download here materials from zenodo
-        bash /tmp/download_scRNAseq.sh
+        #Clone the repo and move the notebooks, then remove
+        git clone --depth 1 https://github.com/hds-sandbox/scRNASeq_course.git /tmp/course
+        mv /tmp/course/Notebooks .
+        rm -rf /tmp/course
+        #Download only data and unzip
+        zenodo_get 10.5281/zenodo.7827898 -w test.txt
+        wget `grep Data test.txt`
+        unzip Data.zip; rm Data.zip
+        #make the results folder
+        mkdir -p Results
+
         conda deactivate
 
     else
@@ -100,6 +108,10 @@ elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
 
     fi
     
+    #bashrc file for conda
+    echo 'eval "$(/opt/miniconda/bin/conda shell.bash hook)"'>>/home/ucloud/.bashrc   
+    conda 'activate /opt/miniconda/envs/RNAseq_env'>>/home/ucloud/.bashrc
+    #start a session of rstudio server
     printf "\n===================  "
     printf "\n== Start RStudio ==  \n"
     printf "=================== \n\n"
