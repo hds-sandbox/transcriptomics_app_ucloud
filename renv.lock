@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.2",
+    "Version": "4.4.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -9,7 +9,7 @@
     ]
   },
   "Bioconductor": {
-    "Version": "3.18"
+    "Version": "3.20"
   },
   "Packages": {
     "ALL": {
@@ -1833,17 +1833,10 @@
     },
     "treeio": {
       "Package": "treeio",
-      "Version": "1.31.0",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "GuangchuangYu",
-      "RemoteRepo": "treeio",
-      "RemoteRef": "devel",
-      "RemoteSha": "3f53eecb86689c317f5ca4b130d89a24a763bd0f",
-      "Requirements": ["R", "ape", "dplyr", "jsonlite", "magrittr", "methods", "rlang", "stats", "tibble", "tidytree", "utils", "yulab.utils"],
-      "Hash": "d816a5695f616628cb03bb616ffd5c90"
-    },
+      "Version": "1.30.0",
+      "Source": "Bioconductor",
+      "Repository": "Bioconductor 3.20"
+    }, 
     "tweenr": {
       "Package": "tweenr",
       "Version": "2.0.3",

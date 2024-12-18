@@ -54,7 +54,9 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
         echo "-----> Downloading fresh course material."
         #Clone the repo and move the notebooks, then remove
         git clone --depth 1 https://github.com/hds-sandbox/bulk_RNAseq_course.git /tmp/course
-        mv /tmp/course/Notebooks .
+        mv /tmp/course/Notebooks  .
+        mkdir -p Scripts
+        mv /tmp/course/Scripts/ucloud_preprocessing_setup Scripts/
         rm -rf /tmp/course
         #Download only data and unzip
         zenodo_get 10.5281/zenodo.7116370 -w test.txt
@@ -84,7 +86,7 @@ elif [ "${COURSE}" == "Intro_to_bulkRNAseq" ]; then
 elif [ "${COURSE}" == "Intro_scRNAseq_R" ]; then
     echo "-----> Chosen course: Introduction to scRNAseq analysis in R"
 
-    if [ ! -d "Intro_scRNAseq_R" ]; then
+    if [ ! -d "Notebooks" ]; then
 
         eval "$(/opt/miniconda/bin/conda shell.bash hook)" 
         conda activate /opt/miniconda/envs/RNAseq_env 

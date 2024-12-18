@@ -16,13 +16,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ## Copy files
 COPY --chown=$USERID:$GROUPID ./scripts/environment.yml /tmp
-COPY --chown=$USERID:$GROUPID ./scripts/download_bulkRNAseq.sh /tmp
-COPY --chown=$USERID:$GROUPID ./scripts/download_scRNAseq.sh /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/Rinstallations.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/install_renv.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/set_Rprofile.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/external_packages_for_conda.R /tmp
-COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/doubletfinder.zip /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/hdWGCNA-69110d0.zip /tmp
 
@@ -64,8 +61,13 @@ RUN sudo apt-get update \
 ## Installations for usage in Rstudio
 ## dev libraries needed for Rhtslib, RcppGSL, hdf5r, libfftw installations
 ## Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor
-RUN sudo apt-get update \
- && sudo apt-get install --no-install-recommends -y libfftw3-3 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
+
+COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
+
+RUN sudo apt-get update && sudo apt-get install -y software-properties-common \
+ && sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu jammy main universe" \ && sudo apt-get update \
+ && sudo apt-get install -y libfftw3-double3=3.3.8-2ubuntu8 libfftw3-long3=3.3.8-2ubuntu8 libfftw3-single3=3.3.8-2ubuntu8 \
+ && sudo apt-get install -y libfftw3-3=3.3.8-2ubuntu8 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
  && sudo apt-get clean \
  && sudo rm -rf /var/lib/apt/lists/* \
  && sudo mkdir -p /opt/renv_transcriptomics/ \
@@ -74,7 +76,7 @@ RUN sudo apt-get update \
  && sudo chown -R "$USERID":"$GROUPID" /opt/renv_transcriptomics/ \
  && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
  && export GITHUB_PAT="$GITHUB_PAT" \
- && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/install_renv.R')" \
+ && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); options(install.opts = "--no-data"); source(file='/tmp/install_renv.R')" \
  && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
  && rm /opt/renv_transcriptomics/.Rprofile 
 
