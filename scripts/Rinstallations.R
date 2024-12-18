@@ -7,10 +7,11 @@ setwd('/usr/renv_transcriptomics/renv')
 Sys.setenv(RENV_PATHS_CACHE = '/usr/renv_transcriptomics/renv/cache')
 
 renv::init()
+options(renv.config.install.staged = FALSE)
 
-renv::install("remotes")
-renv::install("gitcreds")
-renv::install("httr")
+renv::install("remotes", prompt=FALSE)
+renv::install("gitcreds", prompt=FALSE)
+renv::install("httr", prompt=FALSE)
 
 library(httr)
 
@@ -38,12 +39,12 @@ if(token != "None"){
 remotes::install_version("SeuratObject", "4.1.4", repos = c("https://satijalab.r-universe.dev", getOption("repos")))
 remotes::install_version("Seurat", "4.4.0", repos = c("https://satijalab.r-universe.dev", getOption("repos")))
 
-install.packages('BiocManager')
+renv::install('BiocManager', prompt=FALSE)
 
 #renv::install("Matrix@1.6-1")
-renv::install("Matrix")
+renv::install("Matrix", prompt=FALSE)
 
-remotes::install_github("cran/howmany")
+remotes::install_github("cran/howmany", prompt=FALSE)
 
 
 
@@ -75,7 +76,7 @@ renv::install(c(
 "bioc::org.Hs.eg.db",
 "bioc::org.Mm.eg.db",
 "bioc::org.Dm.eg.db"
-))
+), prompt=FALSE)
 
 
 
@@ -119,7 +120,7 @@ renv::install(c(
   "tidyr",
   "tidyverse",
   "WGCNA"
-))
+), prompt=FALSE)
 
 renv::install(c(
     "satijalab/seurat-data",
@@ -131,13 +132,15 @@ renv::install(c(
     "satijalab/seurat-wrappers@community-vignette"
   ),
   upgrade = "never",
-  quiet = FALSE
+  quiet = FALSE,
+  prompt=FALSE
 )
 
-remotes::install_github('smorabit/hdWGCNA', 
-                         ref='dev', 
-                         upgrade="never",
-                         quiet=FALSE )
+#remotes::install_github('smorabit/hdWGCNA', 
+#                         ref='dev', 
+#                         upgrade="never",
+#                         quiet=FALSE, 
+#                         prompt=FALSE )
 
 renv::settings$snapshot.type("all")
 renv::snapshot(prompt=FALSE)

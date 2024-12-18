@@ -67,7 +67,7 @@ COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
 RUN sudo apt-get update && sudo apt-get install -y software-properties-common \
  && sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu jammy main universe" \ && sudo apt-get update \
  && sudo apt-get install -y libfftw3-double3=3.3.8-2ubuntu8 libfftw3-long3=3.3.8-2ubuntu8 libfftw3-single3=3.3.8-2ubuntu8 \
- && sudo apt-get install -y libfftw3-3=3.3.8-2ubuntu8 libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
+ && sudo apt-get install -y libhdf5-dev libgsl27 liblzma-dev libdeflate-dev zlib1g-dev libbz2-dev \
  && sudo apt-get clean \
  && sudo rm -rf /var/lib/apt/lists/* \
  && sudo mkdir -p /opt/renv_transcriptomics/ \
