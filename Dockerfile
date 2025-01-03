@@ -17,11 +17,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ## Copy files
 COPY --chown=$USERID:$GROUPID ./scripts/environment.yml /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/Rinstallations.R /tmp
-COPY --chown=$USERID:$GROUPID ./scripts/install_renv.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/set_Rprofile.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/external_packages_for_conda.R /tmp
 COPY --chown=$USERID:$GROUPID ./scripts/doubletfinder.zip /tmp
-COPY --chown=$USERID:$GROUPID ./scripts/hdWGCNA-69110d0.zip /tmp
 
 ARG GITHUB_PAT
 
@@ -63,6 +61,9 @@ RUN sudo apt-get update \
 ## Some changes in the C compiler flags (CFLAGS) for compatibility with R packages from bioconductor
 
 COPY --chown=$USERID:$GROUPID ./renv.lock /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/install_renv.R /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/hdWGCNA-69110d0.zip /tmp
+COPY --chown=$USERID:$GROUPID ./scripts/annotables-0.2.0.zip /tmp
 
 RUN sudo apt-get update && sudo apt-get install -y software-properties-common \
  && sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu jammy main universe" \ && sudo apt-get update \
@@ -76,7 +77,9 @@ RUN sudo apt-get update && sudo apt-get install -y software-properties-common \
  && sudo chown -R "$USERID":"$GROUPID" /opt/renv_transcriptomics/ \
  && cp /tmp/renv.lock /opt/renv_transcriptomics/renv.lock \
  && export GITHUB_PAT="$GITHUB_PAT" \
- && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); options(install.opts = "--no-data"); source(file='/tmp/install_renv.R')" \
+ && unzip /tmp/hdWGCNA-69110d0.zip -d /tmp/hdwgcna \
+ && unzip /tmp/annotables-0.2.0.zip -d /tmp/annotables-0.2.0 \
+ && /usr/local/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); options(install.opts = '--no-data'); source(file='/tmp/install_renv.R')" \
  && cat /tmp/set_Rprofile.R > "/home/$USER/.Rprofile" \
  && rm /opt/renv_transcriptomics/.Rprofile 
 

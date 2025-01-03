@@ -40,7 +40,7 @@ renv::install(c(
     "satijalab/seurat-data",
     "mojaveazure/seurat-disk",
     "SamueleSoraggi/DoubletFinder",
-    "stephenturner/annotables",
+    #"stephenturner/annotables", #problem in db loading when installed from github - installed from source below
     "cellgeni/sceasy",
     "cysouw/qlcMatrix",
     "satijalab/seurat-wrappers@community-vignette"
@@ -49,11 +49,15 @@ renv::install(c(
   quiet = FALSE
 )
 
-remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
-                         upgrade="never",
-                         quiet=FALSE)
+# Install some packages from a local zip file
+install.packages("/tmp/annotables-0.2.0/", repos = NULL, type = "source")
+install.packages("/tmp/hdwgcna/", repos = NULL, type = "source")
 
-#remotes::install_github('smorabit/hdWGCNA@69110d0aefdb0601a1215b232a83b29017a39dae', 
+#remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
+#                        upgrade="never",
+#                        quiet=FALSE)
+
+#remotes::install_github('smorabit/hdWGCNA', 
 #                         ref='dev', 
 #                         upgrade="never",
 #                         quiet=FALSE )
