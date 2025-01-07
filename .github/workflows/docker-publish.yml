@@ -36,5 +36,5 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_ORG }}/transcriptomicsapp:${{ secrets.DOCKER_TAG }}
           build-args: |
-          BASE_IMAGE=${{ env.BASE_IMAGE }}
-          GITHUB_PAT=${{ secrets.PAT_GITHUB }}
+            BASE_IMAGE=${{ env.BASE_IMAGE }}
+            GITHUB_PAT=${{ secrets.PAT_GITHUB }}
