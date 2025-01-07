@@ -7,6 +7,7 @@ channels:
     - gwforg
     - maximinio
 dependencies:
+    - python<3.12
     - anndata
     - bedtools
     - bioconductor-airway
@@ -114,8 +115,11 @@ dependencies:
     - numpy
     - matplotlib
     - jupyter_contrib_nbextensions # for auto-completion 
+    - jupyter_app_launcher # personalized items in launcher
     - squidpy
     - pytest
+    - geopandas # for bento-tools
+    - cellpose  # for bento-tools
     - pip:
       #### pip installations for spatial data tutorials
       # install method 1: latest pip release (recommended)
@@ -147,3 +151,4 @@ dependencies:
       - PyQt5 # for napari
       - lxml_html_clean # for napari
       - jupyter-black
+      - git+https://github.com/YeoLab/bento-tools@b1fd0e1

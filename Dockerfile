@@ -88,6 +88,8 @@ COPY --chown=$USERID:$GROUPID ./pbmc3k /usr/Cirrocumulus/Data/pbmc3k
 
 ## entrypoint script
 COPY --chown=$USERID:$GROUPID ./scripts/start-app /usr/bin/start-app
-RUN chmod 755 /usr/bin/start-app
+
+RUN chmod 755 /usr/bin/start-app \
+    && sudo chown -R "$USERID":"$GROUPID" /etc/rstudio/
 
 WORKDIR /work
