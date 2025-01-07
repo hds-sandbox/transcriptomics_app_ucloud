@@ -8,7 +8,7 @@ while getopts c:f:p: option; do
     case "${option}" in
     c) COURSE=${OPTARG} ;;
     f) CIRRO_FOLDER=${OPTARG} ;; # only for Cirrocumulus choice of module
-    p) PORT_USER=${OPTARG} ;;
+    p) PORT_USER=${OPTARG} ;; # not needed on ucloud!!!
     \?)                          ## Invalid option
         printf "Error: invalid option.\n\n"
         exit
