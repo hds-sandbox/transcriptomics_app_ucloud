@@ -9,6 +9,10 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    env:
+        # Define environment variables here
+        BASE_IMAGE: dreg.cloud.sdu.dk/ucloud-apps/rstudio:4.4.2
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -31,3 +35,6 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_ORG }}/transcriptomicsapp:${{ secrets.DOCKER_TAG }}
+          build-args: |
+          BASE_IMAGE=${{ env.BASE_IMAGE }}
+          GITHUB_PAT=${{ secrets.PAT_GITHUB }}
