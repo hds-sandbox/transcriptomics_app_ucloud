@@ -29,6 +29,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Remove unnecessary files to create room for DOcker image
+        run: |
+          ##removes up to 14GB according to https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+
         ##DOCKER_TAG secret is also latest, change if you need for example a test version. 
         ##Remember to set back to latest after that. Preferably, avoid changing that,
         ##and instead push to your own account for testing         
