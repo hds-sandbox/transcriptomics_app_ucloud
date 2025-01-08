@@ -43,4 +43,3 @@ jobs:
             GITHUB_PAT=${{ secrets.PAT_GITHUB }}
             DOCKER_BUILDKIT=1
           outputs: type=registry
-          progress: quiet
