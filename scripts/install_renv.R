@@ -50,8 +50,10 @@ renv::install(c(
 )
 
 # Install some packages from a local zip file
-install.packages("/tmp/annotables-0.2.0/", repos = NULL, type = "source", quiet=TRUE)
-install.packages("/tmp/hdwgcna/", repos = NULL, type = "source", quiet=TRUE)
+renv_lib_path <- renv::paths$library()
+install.packages("/tmp/annotables-0.2.0/", repos = NULL, type = "source", quiet=TRUE, lib=renv_lib_path)
+install.packages("/tmp/hdwgcna/", repos = NULL, type = "source", quiet=TRUE, lib=renv_lib_path)
+
 
 #remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
 #                        upgrade="never",

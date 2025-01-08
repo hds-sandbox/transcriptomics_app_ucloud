@@ -34,33 +34,33 @@ install.packages('stringi',
 remotes::install_github("NightingaleHealth/ggforestplot",
     upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=TRUE )
 
 remotes::install_github("jhrcook/ggasym", 
     upgrade="never", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=TRUE )
 
 install.packages('GOplot', 
     repos='http://cran.us.r-project.org', 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=TRUE )
 
 install.packages('BiocManager', 
     repos='http://cran.us.r-project.org', 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=TRUE )
 
 BiocManager::install(c("org.Hs.eg.db", "org.Mm.eg.db", "org.Dm.eg.db"),
     update=FALSE, 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-    quiet=FALSE )
+    quiet=TRUE )
 
 remotes::install_github(c("satijalab/seurat-data",
                           "mojaveazure/seurat-disk"),
                           upgrade="never",
                           lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
-                          quiet=FALSE )
+                          quiet=TRUE )
 
 #remotes::install_local("/tmp/doubletfinder.zip", 
 #    lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/")
@@ -73,12 +73,12 @@ remotes::install_github(c("satijalab/seurat-data",
 remotes::install_github("SamueleSoraggi/DoubletFinder", 
     lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/", 
     upgrade="never",
-    quiet=FALSE )
+    quiet=TRUE )
 
 remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
                         lib="/opt/miniconda/envs/RNAseq_env/lib/R/library/",
                         upgrade="never",
-                        quiet=FALSE)
+                        quiet=TRUE)
 
 #remotes::install_github('smorabit/hdWGCNA@69110d0aefdb0601a1215b232a83b29017a39dae', 
 #    ref='dev', 
