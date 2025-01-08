@@ -28,13 +28,13 @@ renv::init()
 
 
 renv::restore(lockfile='/opt/renv_transcriptomics/renv.lock', 
-             prompt=FALSE)
+             prompt=TRUE)
 
 message("INSTALL GITHUB PACKAGES")
 
 remotes::install_github("NightingaleHealth/ggforestplot",
     upgrade = "never",
-    quiet = FALSE)
+    quiet = TRUE)
 
 renv::install(c(
     "satijalab/seurat-data",
@@ -46,12 +46,12 @@ renv::install(c(
     "satijalab/seurat-wrappers@community-vignette"
   ),
   upgrade = "never",
-  quiet = FALSE
+  quiet = TRUE
 )
 
 # Install some packages from a local zip file
-install.packages("/tmp/annotables-0.2.0/", repos = NULL, type = "source")
-install.packages("/tmp/hdwgcna/", repos = NULL, type = "source")
+install.packages("/tmp/annotables-0.2.0/", repos = NULL, type = "source", quiet=TRUE)
+install.packages("/tmp/hdwgcna/", repos = NULL, type = "source", quiet=TRUE)
 
 #remotes::install_local('/tmp/hdWGCNA-69110d0.zip',
 #                        upgrade="never",

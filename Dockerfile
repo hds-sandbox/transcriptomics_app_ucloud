@@ -36,7 +36,7 @@ RUN sudo apt-get update \
  && conda config --set channel_priority flexible \
  && conda install -n base --yes conda-libmamba-solver conda-forge::mamba \
  && conda config --set solver libmamba \
- && conda env create -vv -p /opt/miniconda/envs/RNAseq_env -f /tmp/environment.yml \
+ && conda env create -q -p /opt/miniconda/envs/RNAseq_env -f /tmp/environment.yml \
  && conda clean -y -a
 
  ## pip installation and some other R packages
@@ -46,13 +46,13 @@ RUN sudo apt-get update \
   # cirrocumulus installation
   && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir cirrocumulus \
   # jupyterlab plugins
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-quarto \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-code-formatter \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir black isort \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyterlab-github \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir jupyter_bokeh \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir plotly \
-  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir ipywidgets \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q jupyterlab-quarto \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q  jupyterlab-code-formatter \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q black isort \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q jupyterlab-github \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q jupyter_bokeh \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q plotly \
+  && /opt/miniconda/envs/RNAseq_env/bin/pip install --no-input --no-cache-dir -q ipywidgets \
   && export GITHUB_PAT="$GITHUB_PAT" \
   && /opt/miniconda/envs/RNAseq_env/bin/R -e "token <- Sys.getenv('GITHUB_PAT'); source(file='/tmp/external_packages_for_conda.R')"
 
